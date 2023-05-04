@@ -1,10 +1,26 @@
-# JAVAFX_LIB_PATH is the path to the javafx .jar files. The path should use forward slash.
+# Make sure you have added these environemnt variables:
+#     JAVAFX_LIB_PATH: path to JavaFX .jar files
+#     JAVA_FMT: google-java-format command
+
+ifeq ($(OS),Windows_NT)
+    OS_DETECTED = Windows
+else
+    OS_DETECTED = $(shell uname -s)
+endif
+
+ifeq ($(OS_DETECTED),Windows)
+DELIM = ;
+else ifeq ($(OS_DETECTED),Darwin)
+DELIM = :
+endif
+
 FX_PATH = $(JAVAFX_LIB_PATH)
 ADDED_MODULES = javafx.controls,javafx.fxml
 JAVAC_FLAGS = --module-path $(FX_PATH) --add-modules $(ADDED_MODULES)
-JAVA_FLAGS = --module-path $(FX_PATH) --add-modules $(ADDED_MODULES) -Dfile.encoding=UTF-8 -classpath "../nobug/bin:$(FX_PATH)/javafx.base.jar:$(JAVA_FX)/javafx.controls.jar:$(JAVA_FX)/javafx.fxml.jar:$(JAVA_FX)/javafx.graphics.jar:$(JAVA_FX)/javafx.media.jar:$(JAVA_FX)/javafx.swing.jar:$(JAVA_FX)/javafx.web.jar" -XX:+ShowCodeDetailsInExceptionMessages
 
-.PHONY: run fmt clean
+JAVA_FLAGS = --module-path $(FX_PATH) --add-modules $(ADDED_MODULES) -Dfile.encoding=UTF-8 -classpath "./bin$(DELIM)$(FX_PATH)/javafx.base.jar$(DELIM)$(JAVA_FX)/javafx.controls.jar$(DELIM)$(JAVA_FX)/javafx.fxml.jar$(DELIM)$(JAVA_FX)/javafx.graphics.jar$(DELIM)$(JAVA_FX)/javafx.media.jar$(DELIM)$(JAVA_FX)/javafx.swing.jar$(DELIM)$(JAVA_FX)/javafx.web.jar"
+
+.PHONY: run compile fmt clean
 
 run: compile
 	java $(JAVA_FLAGS) application.Main
