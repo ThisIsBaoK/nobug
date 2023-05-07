@@ -35,7 +35,7 @@ public class Main extends Application {
             } else if (loginPage.userField.getText().isEmpty()
                 && loginPage.passwordField.getText().isEmpty()) {
               loginPage.loginStatus.setFill(Color.FIREBRICK);
-              loginPage.loginStatus.setText("User Name and Password are required");
+              loginPage.loginStatus.setText("Username and Password are required");
             } else {
               loginPage.loginStatus.setFill(Color.FIREBRICK);
               loginPage.loginStatus.setText("Wrong username or password");

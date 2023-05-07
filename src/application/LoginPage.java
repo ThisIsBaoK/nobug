@@ -31,7 +31,7 @@ public class LoginPage {
     scenetitle.setFont(UIConfig.heading1Font);
     grid.add(scenetitle, 0, 0, 2, 1);
 
-    grid.add(new Label("User Name:"), 0, 1);
+    grid.add(new Label("Username:"), 0, 1);
     this.userField = new TextField();
     grid.add(this.userField, 1, 1);
 
