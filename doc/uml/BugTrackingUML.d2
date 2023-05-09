@@ -1,0 +1,75 @@
+Ticket: {
+  shape: class
+
+  id: int
+  date: Date
+  status: Status
+  package: Package
+  level: Severity
+  description: String
+
+  getID(): int
+  getDate(): int
+  getStatus(): Status
+  getLevel(): Severity
+  getDescription(): String
+  lock(): void
+  unlock(): void
+}
+
+User: {
+  shape: class
+
+  id: int
+  email: String
+  role: Role
+  description: String
+
+  createTicket(package\: Package, level\: Severity, description\: String): Ticket
+}
+
+Status: {
+  shape: class
+
+  Open
+  Inprogress
+  Done
+  Verify
+  Close
+}
+
+Severity: {
+  shape: class
+
+  Low
+  Medium
+  High
+  Severe
+}
+
+Package: {
+  shape: class
+
+  id: int
+  link: String
+  description: String
+  status: String
+  version: String
+  lock(): void
+  unlock(): void
+}
+
+Role: {
+  shape: class
+
+  Unassigned
+  Manager
+  Editor
+  Viewer
+}
+
+Status -> Ticket
+Severity -> Ticket
+Ticket -- User
+Package -- Ticket
+Role -> User
