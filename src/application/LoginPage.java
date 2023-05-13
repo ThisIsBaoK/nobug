@@ -41,9 +41,6 @@ public class LoginPage {
 
     HBox buttonHBox = new HBox(10);
 
-    this.signUpButton = new Button("Sign up");
-    buttonHBox.getChildren().add(this.signUpButton);
-
     this.signInButton = new Button("Sign in");
     buttonHBox.getChildren().add(this.signInButton);
     buttonHBox.setAlignment(Pos.BOTTOM_RIGHT);
