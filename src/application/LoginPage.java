@@ -37,6 +37,7 @@ public class LoginPage {
 
     grid.add(new Label("Password:"), 0, 2);
     this.passwordField = new PasswordField();
+    this.passwordField.setText("admin");
     grid.add(this.passwordField, 1, 2);
 
     HBox buttonHBox = new HBox(10);
