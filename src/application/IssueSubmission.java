@@ -3,11 +3,11 @@ package application;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
+import javafx.scene.text.Text;
 
 public class IssueSubmission {
   public String sectionTitle;
@@ -28,11 +28,14 @@ public class IssueSubmission {
     this.title = new TextField();
     this.description = new TextArea();
     this.button = new Button("Submit");
-    this.button.setOnAction((evt) -> {
-      System.out
-          .println("Priority: " + this.priorities.getValue() + ", Title: " + this.title.getText());
-    });
+    this.button.setOnAction(
+        (evt) -> {
+          System.out.println(
+              "Priority: " + this.priorities.getValue() + ", Title: " + this.title.getText());
+        });
 
+    Text heading = new Text("Submit New Issue");
+    heading.setFont(UIConfig.heading1Font);
     HBox titleBox = new HBox(new Label("Title: "), title);
     titleBox.setSpacing(UIConfig.pad2);
     HBox prioritiesBox = new HBox(new Label("Severity: "), priorities);
@@ -40,9 +43,7 @@ public class IssueSubmission {
     VBox descriptionBox = new VBox(new Label("Description: "), this.description);
     descriptionBox.setSpacing(UIConfig.pad2);
 
-    this.pane = new VBox(titleBox, prioritiesBox, descriptionBox, button);
+    this.pane = new VBox(heading, titleBox, prioritiesBox, descriptionBox, button);
     this.pane.setSpacing(UIConfig.pad2);
   }
-  
-  
 }

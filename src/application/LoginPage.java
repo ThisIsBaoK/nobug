@@ -25,14 +25,14 @@ public class LoginPage {
     grid.setAlignment(Pos.CENTER);
     grid.setHgap(UIConfig.pad2);
     grid.setVgap(UIConfig.pad2);
-    grid.setPadding(new Insets(UIConfig.pad2, UIConfig.pad2, UIConfig.pad2, UIConfig.pad2));
+    grid.setPadding(new Insets(UIConfig.pad2));
 
     Text scenetitle = new Text("Login");
     scenetitle.setFont(UIConfig.heading1Font);
     grid.add(scenetitle, 0, 0, 2, 1);
 
     grid.add(new Label("Username:"), 0, 1);
-    this.userField = new TextField();
+    this.userField = new TextField("admin");
     grid.add(this.userField, 1, 1);
 
     grid.add(new Label("Password:"), 0, 2);

@@ -13,7 +13,7 @@ public class UIConfig {
   public static final int pad3 = 15;
   public static final int pad4 = 25;
   public static final int pad5 = 35;
-  public static final Font heading1Font = Font.font("Tahoma", FontWeight.BOLD, 20);
-  public static final Font heading2Font = Font.font("Tahoma", FontWeight.BOLD, 16);
+  public static final Font heading1Font = Font.font("Tahoma", FontWeight.BOLD, 16);
+  public static final Font heading2Font = Font.font("Tahoma", FontWeight.BOLD, 14);
   public static final Font heading3Font = Font.font("Tahoma", FontWeight.BOLD, 12);
 }
