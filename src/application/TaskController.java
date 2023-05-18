@@ -15,25 +15,25 @@ public class TaskController {
   private VBox parentContainer;
 
   public TaskController(
-      String description,
       VBox todoParentContainer,
       VBox inprogressParentContainer,
       VBox doneParentContainer,
-      int curPane) {
+      Task task) {
     this.todoParentContainer = todoParentContainer;
     this.inprogressParentContainer = inprogressParentContainer;
     this.doneParentContainer = doneParentContainer;
-    switch (curPane) {
-      case 0:
+    switch (task.getStatus()) {
+      case TODO:
         parentContainer = todoParentContainer;
         break;
-      case 1:
+      case INPROGRESS:
         parentContainer = inprogressParentContainer;
         break;
-      default:
+      case DONE:
         parentContainer = doneParentContainer;
+        break;
     }
-    Label label = new Label(description);
+    Label label = new Label(task.getTitle());
     label.setWrapText(true);
     Button button = new Button(">");
     button.setStyle("-fx-font-size: 8;");

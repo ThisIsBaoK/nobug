@@ -32,38 +32,6 @@ public class Main extends Application {
       VBox.setVgrow(taskFlowController.getContainer(), Priority.ALWAYS);
       HBox.setHgrow(taskFlowController.getContainer(), Priority.ALWAYS);
 
-      // Generate fake data.
-      new TaskController(
-          "Implement the Login page",
-          taskFlowController.getTodoContainer(),
-          taskFlowController.getInprogressContainer(),
-          taskFlowController.getDoneContainer(),
-          0);
-      new TaskController(
-          "Implement the Task Flow page",
-          taskFlowController.getTodoContainer(),
-          taskFlowController.getInprogressContainer(),
-          taskFlowController.getDoneContainer(),
-          0);
-      new TaskController(
-          "Merge the Task Flow and the Navigation system",
-          taskFlowController.getTodoContainer(),
-          taskFlowController.getInprogressContainer(),
-          taskFlowController.getDoneContainer(),
-          0);
-      new TaskController(
-          "Implement the Navigation system",
-          taskFlowController.getTodoContainer(),
-          taskFlowController.getInprogressContainer(),
-          taskFlowController.getDoneContainer(),
-          0);
-      new TaskController(
-          "Implement task creation",
-          taskFlowController.getTodoContainer(),
-          taskFlowController.getInprogressContainer(),
-          taskFlowController.getDoneContainer(),
-          0);
-
       // Configure primary stage.
       stage.setScene(menuScene);
       stage.show();
