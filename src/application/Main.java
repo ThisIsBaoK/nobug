@@ -10,34 +10,45 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
   @Override
-  public void start(Stage stage) {
+  public void start(Stage primaryStage) {
     try {
-      // Create application menu.
+      // Load all FXMLs.
       FXMLLoader navigationLoader =
-          new FXMLLoader(getClass().getResource("/application/Navigation.fxml"));
+          new FXMLLoader(getClass().getResource(SoftwareInfo.NAVIGATION_FXML));
+      FXMLLoader taskFlowLoader =
+          new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FLOW_FXML));
+      FXMLLoader taskFormLoader =
+          new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FORM_FXML));
+
+      // Controllers.
       Scene menuScene = new Scene(navigationLoader.load());
+      taskFlowLoader.load();
+      taskFormLoader.load();
       NavigationController navigationController = navigationLoader.getController();
-      navigationController.setStage(stage);
+      TaskFormController taskFormController = taskFormLoader.getController();
+      TaskFlowController taskFlowController = taskFlowLoader.getController();
 
       // Create pages.
       VBox tabContainer = navigationController.getTabContainer();
 
       // Task Flow page.
-      FXMLLoader taskFlowLoader =
-          new FXMLLoader(getClass().getResource("/application/TaskFlow.fxml"));
-      taskFlowLoader.load();
-      TaskFlowController taskFlowController = taskFlowLoader.getController();
-      System.out.println(taskFlowController);
       tabContainer.getChildren().add(taskFlowController.getContainer());
       VBox.setVgrow(taskFlowController.getContainer(), Priority.ALWAYS);
       HBox.setHgrow(taskFlowController.getContainer(), Priority.ALWAYS);
+      System.out.print(taskFormController.getContainer());
+      taskFlowController.setTaskFormController(taskFormController);
+
+      // Required initialization.
+      taskFlowController.init();
+      taskFormController.init();
 
       // Configure primary stage.
-      stage.setScene(menuScene);
-      stage.show();
-      stage.setTitle(SoftwareInfo.softwareName);
+      navigationController.setStage(primaryStage);
+      primaryStage.setScene(menuScene);
+      primaryStage.show();
+      primaryStage.setTitle(SoftwareInfo.SOFTWARE_NAME);
     } catch (Exception e) {
-      System.out.println(e);
+      System.out.println("Here" + e);
     }
   }
 

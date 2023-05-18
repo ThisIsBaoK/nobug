@@ -20,7 +20,7 @@ public class NavigationController {
   public void openAboutWindow() {
     Stage newWindow = new Stage();
     newWindow.setTitle("About");
-    Label content = new Label(SoftwareInfo.about);
+    Label content = new Label(SoftwareInfo.ABOUT);
     content.setWrapText(true);
     VBox container = new VBox(content);
     container.setPadding(new Insets(5));
