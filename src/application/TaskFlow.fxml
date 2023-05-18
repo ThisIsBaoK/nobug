@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox fx:id="container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TaskFlowController">
+	<children>
+		<VBox fx:id="todoContainer" spacing="5.0" HBox.hgrow="ALWAYS">
+			<children>
+				<HBox style="-fx-background-color: #FFBD33;">
+					<children>
+						<Label text="TODO" HBox.hgrow="ALWAYS" />
+						<Pane HBox.hgrow="ALWAYS">
+							<HBox.margin>
+								<Insets />
+							</HBox.margin>
+						</Pane>
+						<Button mnemonicParsing="false" style="-fx-font-size: 8;" text="+" />
+					</children>
+					<VBox.margin>
+						<Insets />
+					</VBox.margin>
+					<padding>
+						<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+					</padding>
+				</HBox>
+			</children>
+		</VBox>
+		<Separator orientation="VERTICAL" prefHeight="200.0" />
+		<VBox fx:id="inprogressContainer" spacing="5.0" HBox.hgrow="ALWAYS">
+			<children>
+				<HBox style="-fx-background-color: #67B6FF;">
+					<children>
+						<Label text="IN PROGRESS" />
+						<Pane HBox.hgrow="ALWAYS" />
+						<Button mnemonicParsing="false" style="-fx-font-size: 8;" text="+" />
+					</children>
+					<padding>
+						<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+					</padding>
+				</HBox>
+			</children>
+		</VBox>
+		<Separator orientation="VERTICAL" prefHeight="200.0" />
+		<VBox fx:id="doneContainer" spacing="5.0" HBox.hgrow="ALWAYS">
+			<children>
+				<HBox style="-fx-background-color: #8BE55F;">
+					<children>
+						<Label text="DONE" />
+						<Pane HBox.hgrow="ALWAYS" />
+						<Button mnemonicParsing="false" style="-fx-font-size: 8;" text="+" />
+					</children>
+					<padding>
+						<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+					</padding>
+				</HBox>
+			</children>
+		</VBox>
+	</children>
+	<padding>
+		<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+	</padding>
+</HBox>
