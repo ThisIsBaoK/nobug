@@ -159,6 +159,7 @@ public class Main extends Application {
   }
 
   public void cancelSignUpForm() {
+    signUpController.clear();
     primaryStage.setScene(loginScene);
   }
 
@@ -221,6 +222,9 @@ public class Main extends Application {
       System.out.println(e);
       return;
     }
+    signUpController.clear();
+    loginController.setEmailText(email);
+    loginController.setPasswordText(password);
     primaryStage.setScene(loginScene);
   }
 

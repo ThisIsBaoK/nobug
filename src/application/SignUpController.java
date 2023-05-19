@@ -41,4 +41,11 @@ public class SignUpController {
   public Button getSubmit() {
     return submit;
   }
+
+  public void clear() {
+    email.clear();
+    password.clear();
+    firstName.clear();
+    lastName.clear();
+  }
 }
