@@ -14,7 +14,7 @@ public class TaskFlowController {
 
   private TaskFormController taskFormController;
 
-  private Stage stage;
+  private Stage taskFormStage;
 
   public HBox getContainer() {
     return container;
@@ -45,20 +45,18 @@ public class TaskFlowController {
   }
 
   public void displayTaskForm(TaskStatus status) {
-    stage.show();
-    stage.toFront();
-    if (!stage.isShowing()) {
-      taskFormController.clear();
-    }
+    taskFormStage.show();
+    taskFormStage.toFront();
+    taskFormController.clear();
     taskFormController.setTaskStatus(status);
   }
 
   public void setTaskFormController(TaskFormController taskFormController) {
     this.taskFormController = taskFormController;
-    stage = new Stage();
-    stage.setTitle("Task Form");
+    taskFormStage = new Stage();
+    taskFormStage.setTitle("Task Form");
     Scene scene = new Scene(this.taskFormController.getContainer());
-    stage.setScene(scene);
+    taskFormStage.setScene(scene);
   }
 
   public void generateTaskFromTaskForm() {
@@ -74,5 +72,9 @@ public class TaskFlowController {
             project,
             taskFormController.getTaskStatus());
     new TaskController(todoContainer, inprogressContainer, doneContainer, task);
+  }
+
+  public void closeTaskFormStage() {
+    taskFormStage.close();
   }
 }

@@ -19,6 +19,7 @@ public class TaskFormController {
 
   public void submit() {
     parentController.generateTaskFromTaskForm();
+    parentController.closeTaskFormStage();
   }
 
   public void clear() {
