@@ -173,7 +173,7 @@ public class Main extends Application {
       signUpController.setErrorMessage("Email must be at least one character");
       return;
     }
-    if (email.length() > 45) {
+    if (email.length() >= 45) {
       signUpController.setErrorMessage("Email must be less than 45 characters");
       return;
     }
