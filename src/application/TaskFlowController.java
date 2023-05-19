@@ -16,15 +16,6 @@ public class TaskFlowController {
 
   private Stage stage;
 
-  public void init() {
-    System.out.println("TaskFlowController.init");
-    container.addEventHandler(
-        UserEvent.TASK_FORM_SUBMITTED,
-        event -> {
-          System.out.println("Form submitted"); // TODO: delete me.
-        });
-  }
-
   public HBox getContainer() {
     return container;
   }
@@ -56,6 +47,10 @@ public class TaskFlowController {
   public void displayTaskForm(TaskStatus status) {
     stage.show();
     stage.toFront();
+    if (!stage.isShowing()) {
+      taskFormController.clear();
+    }
+    taskFormController.setTaskStatus(status);
   }
 
   public void setTaskFormController(TaskFormController taskFormController) {
@@ -64,5 +59,20 @@ public class TaskFlowController {
     stage.setTitle("Task Form");
     Scene scene = new Scene(this.taskFormController.getContainer());
     stage.setScene(scene);
+  }
+
+  public void generateTaskFromTaskForm() {
+    User user = new User("first", "last", "email@mail.com", "123");
+    Project project =
+        new Project("nobug", "A bug tracking system in Java and JavaFX", ProjectStatus.ACTIVE);
+    Task task =
+        new Task(
+            user,
+            user,
+            taskFormController.getTitle(),
+            taskFormController.getDescription(),
+            project,
+            taskFormController.getTaskStatus());
+    new TaskController(todoContainer, inprogressContainer, doneContainer, task);
   }
 }

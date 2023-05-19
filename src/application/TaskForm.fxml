@@ -26,13 +26,13 @@
 		<VBox prefHeight="0.0" prefWidth="0.0">
 			<children>
 				<Label text="Title" />
-				<TextField />
+				<TextField fx:id="title" />
 			</children>
 		</VBox>
 		<VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
 			<children>
 				<Label text="Description" />
-				<TextArea prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+				<TextArea fx:id="description" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
 			</children>
 		</VBox>
 		<VBox prefHeight="0.0" prefWidth="0.0">

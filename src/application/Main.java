@@ -37,9 +37,9 @@ public class Main extends Application {
       HBox.setHgrow(taskFlowController.getContainer(), Priority.ALWAYS);
       System.out.print(taskFormController.getContainer());
       taskFlowController.setTaskFormController(taskFormController);
+      taskFormController.setParentController(taskFlowController);
 
       // Required initialization.
-      taskFlowController.init();
       taskFormController.init();
 
       // Configure primary stage.

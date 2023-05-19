@@ -11,18 +11,43 @@ public class TaskFormController {
   @FXML private TextField title;
   @FXML private TextArea description;
   @FXML private ChoiceBox<TaskStatus> status;
+  private TaskFlowController parentController;
 
   public void init() {
     status.getItems().setAll(TaskStatus.values());
   }
 
   public void submit() {
-    UserEvent event = new UserEvent(UserEvent.TASK_FORM_SUBMITTED);
-    container.fireEvent(event);
-    System.out.println("TaskFormController.submit: run"); // TODO: delete me.
+    parentController.generateTaskFromTaskForm();
+  }
+
+  public void clear() {
+    title.clear();
+    description.clear();
+    status.setValue(TaskStatus.TODO);
   }
 
   public VBox getContainer() {
     return container;
+  }
+
+  public String getTitle() {
+    return title.getText();
+  }
+
+  public String getDescription() {
+    return description.getText();
+  }
+
+  public TaskStatus getTaskStatus() {
+    return status.getValue();
+  }
+
+  public void setTaskStatus(TaskStatus status) {
+    this.status.setValue(status);
+  }
+
+  public void setParentController(TaskFlowController parentController) {
+    this.parentController = parentController;
   }
 }
