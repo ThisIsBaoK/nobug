@@ -61,6 +61,9 @@ public class Main extends Application {
       // Create pages.
       VBox tabContainer = navigationController.getTabContainer();
 
+      // Navigation.
+      navigationController.setTaskFlow(taskFlowController.getContainer());
+
       // Task Flow page.
       tabContainer.getChildren().add(taskFlowController.getContainer());
       VBox.setVgrow(taskFlowController.getContainer(), Priority.ALWAYS);
