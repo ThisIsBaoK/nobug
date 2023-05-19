@@ -19,4 +19,5 @@ public class SoftwareInfo {
   public static final String TASK_FLOW_FXML = "/application/TaskFlow.fxml";
   public static final String NAVIGATION_FXML = "/application/Navigation.fxml";
   public static final String TASK_FORM_FXML = "/application/TaskForm.fxml";
+  public static final String LOGIN_FXML = "/application/Login.fxml";
 }

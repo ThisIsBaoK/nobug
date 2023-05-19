@@ -13,7 +13,7 @@ public class TaskFormController {
   @FXML private ChoiceBox<TaskStatus> status;
   private TaskFlowController parentController;
 
-  public void init() {
+  public void initialize() {
     status.getItems().setAll(TaskStatus.values());
   }
 
