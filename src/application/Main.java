@@ -19,12 +19,19 @@ public class Main extends Application {
   private Scene loginScene;
   private Scene navigationScene;
   private Stage primaryStage;
+  private Backend backend;
+  NavigationController navigationController;
+  TaskFormController taskFormController;
+  TaskFlowController taskFlowController;
+  LoginController loginController;
 
   @Override
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
 
     try {
+      // Connect to database.
+      backend = new Backend();
       // Load all FXMLs.
       navigationLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.NAVIGATION_FXML));
       taskFlowLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FLOW_FXML));
@@ -38,10 +45,10 @@ public class Main extends Application {
       taskFormLoader.load();
       loginScene = new Scene(loginLoaded);
       navigationScene = new Scene(nagivationLoaded);
-      NavigationController navigationController = navigationLoader.getController();
-      TaskFormController taskFormController = taskFormLoader.getController();
-      TaskFlowController taskFlowController = taskFlowLoader.getController();
-      LoginController loginController = loginLoader.getController();
+      navigationController = navigationLoader.getController();
+      taskFormController = taskFormLoader.getController();
+      taskFlowController = taskFlowLoader.getController();
+      loginController = loginLoader.getController();
 
       // Create pages.
       VBox tabContainer = navigationController.getTabContainer();
@@ -81,6 +88,21 @@ public class Main extends Application {
   }
 
   public void login() {
-    primaryStage.setScene(navigationScene);
+    boolean ok = false;
+    if (loginController.getEmailText().equals("admin")
+        && loginController.getPasswordText().equals("admin")) {
+      ok = true;
+    } else {
+      try {
+        if (backend.userExists(loginController.getEmailText(), loginController.getPasswordText())) {
+          ok = true;
+        }
+      } catch (MyException e) {
+        System.out.println(e);
+      }
+    }
+    if (ok) {
+      primaryStage.setScene(navigationScene);
+    }
   }
 }
