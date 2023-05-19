@@ -13,6 +13,9 @@ public class Backend {
   private static final String SQL_QUERY_EMAIL_PASSWORd_EXISTENCE =
       "SELECT 1 FROM Users WHERE email=? AND password=?";
   private static final String SQL_QUERY_PROJECT_EXISTENCE = "SELECT 1 FROM Projects WHERE id=?";
+  private static final String SQL_READ_ALL_PROJECTS = "SELECT * FROM Projects";
+  private static final String SQL_INSERT_PROJECT =
+      "INSERT INTO Projects(title, description) VALUES(?, ?)";
   private Connection connection;
 
   public Backend() throws MyException {
@@ -86,5 +89,27 @@ public class Backend {
       throw new MyException("execute query: " + e);
     }
     return false;
+  }
+
+  public ResultSet readAllProjects() throws MyException {
+    PreparedStatement preparedStatement;
+    try {
+      preparedStatement = connection.prepareStatement(SQL_READ_ALL_PROJECTS);
+      return preparedStatement.executeQuery();
+    } catch (SQLException e) {
+      throw new MyException("execute query: " + e);
+    }
+  }
+
+  public int addProject(String title, String description) throws MyException {
+    PreparedStatement preparedStatement;
+    try {
+      preparedStatement = connection.prepareStatement(SQL_INSERT_PROJECT);
+      preparedStatement.setString(1, title);
+      preparedStatement.setString(2, description);
+      return preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+      throw new MyException("execute query: " + e);
+    }
   }
 }

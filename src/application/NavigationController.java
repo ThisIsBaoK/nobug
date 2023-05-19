@@ -20,8 +20,9 @@ public class NavigationController {
   @FXML private Button summary;
   private Button selected;
   private Stage stage;
-  private Parent taskFlow;
+  private Parent taskFlowPage;
   private Parent selectedPage;
+  private Parent projectPage;
 
   public void initialize() {
     selected = issueTracker;
@@ -37,8 +38,8 @@ public class NavigationController {
     }
     issueTracker.setStyle("-fx-background-color: #000000;");
     selected = issueTracker;
-    selectedPage = taskFlow;
-    tabContainer.getChildren().add(taskFlow);
+    selectedPage = taskFlowPage;
+    tabContainer.getChildren().add(selectedPage);
   }
 
   public void switchToPeople() {
@@ -61,6 +62,8 @@ public class NavigationController {
     }
     projects.setStyle("-fx-background-color: #000000;");
     selected = projects;
+    selectedPage = projectPage;
+    tabContainer.getChildren().add(selectedPage);
   }
 
   public void switchToSummary() {
@@ -103,8 +106,12 @@ public class NavigationController {
     this.stage.setHeight(600);
   }
 
-  public void setTaskFlow(Parent taskFlow) {
-    this.taskFlow = taskFlow;
-    selectedPage = taskFlow;
+  public void setTaskFlow(Parent page) {
+    this.taskFlowPage = page;
+    selectedPage = page;
+  }
+
+  public void setProject(Parent page) {
+    this.projectPage = page;
   }
 }

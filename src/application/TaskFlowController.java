@@ -55,7 +55,7 @@ public class TaskFlowController {
   public void setTaskFormController(TaskFormController taskFormController) {
     this.taskFormController = taskFormController;
     taskFormStage = new Stage();
-    taskFormStage.setTitle("Task Form");
+    taskFormStage.setTitle("Project Form");
     Scene scene = new Scene(this.taskFormController.getContainer());
     taskFormStage.setScene(scene);
     taskFormController

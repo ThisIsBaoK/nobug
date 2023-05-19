@@ -21,6 +21,8 @@ public class SoftwareInfo {
   public static final String TASK_FORM_FXML = "/application/TaskForm.fxml";
   public static final String LOGIN_FXML = "/application/Login.fxml";
   public static final String SIGN_UP_FXML = "/application/SignUp.fxml";
+  public static final String PROJECT_FXML = "/application/Project.fxml";
+  public static final String PROJECT_FORM_FXML = "/application/ProjectForm.fxml";
   public static final String DATABASE_USERNAME = "root";
   public static final String DATABASE_PASSWORD = "cs380";
   public static final String DATABASE_NAME = "nobug";

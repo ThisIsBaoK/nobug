@@ -12,21 +12,25 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+  private Backend backend;
   private Stage primaryStage;
   private FXMLLoader navigationLoader;
   private FXMLLoader taskFlowLoader;
   private FXMLLoader taskFormLoader;
   private FXMLLoader loginLoader;
   private FXMLLoader signUpLoader;
+  private FXMLLoader projectLoader;
+  private FXMLLoader projectFormLoader;
   private Scene loginScene;
   private Scene signUpScene;
   private Scene navigationScene;
-  private Backend backend;
   private NavigationController navigationController;
   private TaskFormController taskFormController;
   private TaskFlowController taskFlowController;
   private LoginController loginController;
   private SignUpController signUpController;
+  private ProjectController projectController;
+  private ProjectFormController projectFormController;
 
   @Override
   public void start(Stage primaryStage) {
@@ -42,6 +46,8 @@ public class Main extends Application {
       taskFormLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FORM_FXML));
       loginLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.LOGIN_FXML));
       signUpLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.SIGN_UP_FXML));
+      projectLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.PROJECT_FXML));
+      projectFormLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.PROJECT_FORM_FXML));
 
       // Controllers.
       Parent loginLoaded = loginLoader.load();
@@ -49,6 +55,8 @@ public class Main extends Application {
       Parent nagivationLoaded = navigationLoader.load();
       taskFlowLoader.load();
       taskFormLoader.load();
+      projectLoader.load();
+      projectFormLoader.load();
       loginScene = new Scene(loginLoaded);
       signUpScene = new Scene(signUpLoaded);
       navigationScene = new Scene(nagivationLoaded);
@@ -57,12 +65,15 @@ public class Main extends Application {
       taskFlowController = taskFlowLoader.getController();
       loginController = loginLoader.getController();
       signUpController = signUpLoader.getController();
+      projectController = projectLoader.getController();
+      projectFormController = projectFormLoader.getController();
 
       // Create pages.
       VBox tabContainer = navigationController.getTabContainer();
 
       // Navigation.
       navigationController.setTaskFlow(taskFlowController.getContainer());
+      navigationController.setProject(projectController.getContainer());
 
       // Task Flow page.
       tabContainer.getChildren().add(taskFlowController.getContainer());
@@ -70,6 +81,11 @@ public class Main extends Application {
       HBox.setHgrow(taskFlowController.getContainer(), Priority.ALWAYS);
       taskFlowController.setTaskFormController(taskFormController);
       taskFlowController.setBackend(backend);
+
+      // Project page.
+      projectController.setBackend(backend);
+      projectController.updateTableFromDatabase();
+      projectController.setProjectFormController(projectFormController);
 
       // Configure primary stage.
       navigationController.setStage(primaryStage);

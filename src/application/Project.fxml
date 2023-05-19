@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProjectController">
+   <children>
+      <TableView fx:id="tableview" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="376.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="projectID" prefWidth="38.4000244140625" text="ID" />
+          <TableColumn fx:id="title" minWidth="8.0" prefWidth="125.60003280639648" text="Title" />
+            <TableColumn fx:id="description" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="308.79994201660156" text="Description" />
+            <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="107.9998779296875" text="Status" />
+        </columns>
+      </TableView>
+      <HBox maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0">
+         <children>
+            <Label fx:id="errorMessage" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textFill="#b70000" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#displayProjectForm" text="New Project" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>
