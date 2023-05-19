@@ -82,23 +82,33 @@ public class Main extends Application {
                   login();
                 }
               });
-      
-      loginController.getSignUp().setOnAction(
-          new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-              signUp();
-            }
-          });
-      
-      
-      signUpController.getSubmit().setOnAction(
-          new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-              submitSignUpForm();
-            }
-          });
+      loginController
+          .getSignUp()
+          .setOnAction(
+              new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                  signUp();
+                }
+              });
+      signUpController
+          .getCancel()
+          .setOnAction(
+              new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                  cancelSignUpForm();
+                }
+              });
+      signUpController
+          .getSubmit()
+          .setOnAction(
+              new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                  submitSignUpForm();
+                }
+              });
 
       // Show primary stage.
       primaryStage.show();
@@ -134,11 +144,15 @@ public class Main extends Application {
       primaryStage.setScene(navigationScene);
     }
   }
-  
+
   public void signUp() {
     primaryStage.setScene(signUpScene);
   }
-  
+
+  public void cancelSignUpForm() {
+    primaryStage.setScene(loginScene);
+  }
+
   public void submitSignUpForm() {
     primaryStage.setScene(loginScene);
   }

@@ -29,7 +29,7 @@ public class LoginController {
   public Button getLogin() {
     return login;
   }
-  
+
   public Hyperlink getSignUp() {
     return signUp;
   }
