@@ -2,6 +2,7 @@ package application;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class SignUpController {
@@ -9,6 +10,7 @@ public class SignUpController {
   @FXML private TextField password;
   @FXML private TextField firstName;
   @FXML private TextField lastName;
+  @FXML private Label errorMessage;
   @FXML private Button cancel;
   @FXML private Button submit;
 
@@ -26,6 +28,10 @@ public class SignUpController {
 
   public String getLastNameText() {
     return lastName.getText();
+  }
+
+  public void setErrorMessage(String message) {
+    errorMessage.setText(message);
   }
 
   public Button getCancel() {

@@ -130,14 +130,15 @@ public class Main extends Application {
 
     } else {
       try {
-        if (backend.userExists(loginController.getEmailText(), loginController.getPasswordText())) {
+        if (backend.emailAndPasswordExists(
+            loginController.getEmailText(), loginController.getPasswordText())) {
           ok = true;
         } else {
           loginController.setLoginStatusText("Wrong email or password");
         }
       } catch (MyException e) {
         System.out.println(e);
-        loginController.setLoginStatusText("Failed to read database");
+        loginController.setLoginStatusText("Failed to query database");
       }
     }
     if (ok) {
@@ -154,6 +155,64 @@ public class Main extends Application {
   }
 
   public void submitSignUpForm() {
+    // Validate user name.
+    String email = signUpController.getEmailText();
+    String password = signUpController.getPasswordText();
+    String firstName = signUpController.getFirstNameText();
+    String lastName = signUpController.getLastNameText();
+    if (email.length() == 0) {
+      signUpController.setErrorMessage("Email must be at least one character");
+      return;
+    }
+    if (email.length() > 45) {
+      signUpController.setErrorMessage("Email must be less than 45 characters");
+      return;
+    }
+    // Validate password.
+    if (password.length() == 0) {
+      signUpController.setErrorMessage("Password must be at least one character");
+      return;
+    }
+    if (password.length() >= 45) {
+      signUpController.setErrorMessage("Passowrd must be less than 45 characters");
+      return;
+    }
+    // Validate first name.
+    if (firstName.length() == 0) {
+      signUpController.setErrorMessage("First Name must be at least one character");
+      return;
+    }
+    if (firstName.length() >= 45) {
+      signUpController.setErrorMessage("First Name must be less than 45 characters");
+      return;
+    }
+    // Validate last name.
+    if (lastName.length() == 0) {
+      signUpController.setErrorMessage("Last Name must be at least one character");
+      return;
+    }
+    if (lastName.length() >= 45) {
+      signUpController.setErrorMessage("Last Name must be less than 45 characters");
+      return;
+    }
+    // Check if user exists.
+    try {
+      if (backend.userExists(email)) {
+        signUpController.setErrorMessage("Email is already used");
+        return;
+      }
+    } catch (MyException e) {
+      signUpController.setErrorMessage("Failed to query database");
+      return;
+    }
+    // Add new user to the database.
+    try {
+      backend.addUser(email, password, firstName, lastName);
+    } catch (MyException e) {
+      signUpController.setErrorMessage("Failed to update database");
+      System.out.println(e);
+      return;
+    }
     primaryStage.setScene(loginScene);
   }
 }

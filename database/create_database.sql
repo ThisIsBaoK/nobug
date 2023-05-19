@@ -6,7 +6,7 @@ CREATE TABLE Users (
 	email VARCHAR(45) NOT NULL,
 	password VARCHAR(45) NOT NULL,
 	lastName VARCHAR(45) NOT NULL,
-	firstNames VARCHAR(45) NOT NULL,
+	firstName VARCHAR(45) NOT NULL,
 	PRIMARY KEY (email)
 );
 
