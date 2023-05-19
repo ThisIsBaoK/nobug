@@ -1,5 +1,7 @@
 package application;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -11,6 +13,7 @@ public class TaskFlowController {
   @FXML private VBox todoContainer;
   @FXML private VBox inprogressContainer;
   @FXML private VBox doneContainer;
+  Backend backend;
 
   private TaskFormController taskFormController;
 
@@ -57,21 +60,91 @@ public class TaskFlowController {
     taskFormStage.setTitle("Task Form");
     Scene scene = new Scene(this.taskFormController.getContainer());
     taskFormStage.setScene(scene);
+    taskFormController
+        .getSubmit()
+        .setOnAction(
+            new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent e) {
+                submitTaskForm();
+              }
+            });
   }
 
-  public void generateTaskFromTaskForm() {
+  public void setBackend(Backend backend) {
+    this.backend = backend;
+  }
+
+  public void submitTaskForm() {
+    String author = taskFormController.getAuthorText();
+    String assigned = taskFormController.getAssignedText();
+    String title = taskFormController.getTitleText();
+    String description = taskFormController.getDescriptionText();
+    int project;
+    // Author.
+    if (author.length() == 0) {
+      taskFormController.setErrorMessage("Author must be at least one character");
+      return;
+    }
+    if (author.length() >= 45) {
+      taskFormController.setErrorMessage("Author must be less than 45 characters");
+      return;
+    }
+    // Assigned.
+    if (assigned.length() >= 45) {
+      taskFormController.setErrorMessage("Assigned must be less than 45 characters");
+      return;
+    }
+    // Title.
+    if (title.length() == 0) {
+      taskFormController.setErrorMessage("Title must be at least one character");
+      return;
+    }
+    if (title.length() >= 255) {
+      taskFormController.setErrorMessage("Title must be less than 255 characters");
+      return;
+    }
+    // Description.
+    if (description.length() == 0) {
+      taskFormController.setErrorMessage("Description must be at least one character");
+      return;
+    }
+    if (description.length() >= 2000) {
+      taskFormController.setErrorMessage("Description must be less than 2000 characters");
+      return;
+    }
+    // Project.
+    try {
+      project = Integer.parseInt(taskFormController.getProjectText());
+    } catch (NumberFormatException e) {
+      taskFormController.setErrorMessage("Project must be a positive integer");
+      return;
+    }
+    // Check if author matches with any user.
+    try {
+      if (!backend.userExists(author)) {
+        taskFormController.setErrorMessage("Author does not match with any user");
+        return;
+      }
+      if (assigned.length() > 0) {
+        if (!backend.userExists(assigned)) {
+          taskFormController.setErrorMessage("Assigned does not match with any user");
+          return;
+        }
+      }
+      if (!backend.projectExists(project)) {
+        taskFormController.setErrorMessage("Project does not match with any project");
+        return;
+      }
+    } catch (MyException e) {
+      taskFormController.setErrorMessage("Failed to query database");
+      return;
+    }
+    // Append a new task.
     Task task =
-        new Task(
-            taskFormController.getAuthor(),
-            taskFormController.getAssigned(),
-            taskFormController.getTitle(),
-            taskFormController.getDescriptionText(),
-            1,
-            taskFormController.getTaskStatus());
+        new Task(author, assigned, title, description, project, taskFormController.getTaskStatus());
     new TaskController(todoContainer, inprogressContainer, doneContainer, task);
-  }
-
-  public void closeTaskFormStage() {
+    // Close the form.
     taskFormStage.close();
   }
 }

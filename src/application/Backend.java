@@ -12,6 +12,7 @@ public class Backend {
   private static final String SQL_QUERY_USER_EXISTENCE = "SELECT 1 FROM Users WHERE email=?";
   private static final String SQL_QUERY_EMAIL_PASSWORd_EXISTENCE =
       "SELECT 1 FROM Users WHERE email=? AND password=?";
+  private static final String SQL_QUERY_PROJECT_EXISTENCE = "SELECT 1 FROM Projects WHERE id=?";
   private Connection connection;
 
   public Backend() throws MyException {
@@ -70,5 +71,20 @@ public class Backend {
     } catch (SQLException e) {
       throw new MyException("execute query: " + e);
     }
+  }
+
+  public boolean projectExists(int projectID) throws MyException {
+    PreparedStatement preparedStatement;
+    try {
+      preparedStatement = connection.prepareStatement(SQL_QUERY_PROJECT_EXISTENCE);
+      preparedStatement.setInt(1, projectID);
+      ResultSet rs = preparedStatement.executeQuery();
+      if (rs.isBeforeFirst()) {
+        return true;
+      }
+    } catch (SQLException e) {
+      throw new MyException("execute query: " + e);
+    }
+    return false;
   }
 }

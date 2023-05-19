@@ -69,7 +69,7 @@ public class Main extends Application {
       VBox.setVgrow(taskFlowController.getContainer(), Priority.ALWAYS);
       HBox.setHgrow(taskFlowController.getContainer(), Priority.ALWAYS);
       taskFlowController.setTaskFormController(taskFormController);
-      taskFormController.setParentController(taskFlowController);
+      taskFlowController.setBackend(backend);
 
       // Configure primary stage.
       navigationController.setStage(primaryStage);

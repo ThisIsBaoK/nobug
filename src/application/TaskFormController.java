@@ -1,7 +1,9 @@
 package application;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -14,36 +16,36 @@ public class TaskFormController {
   @FXML private TextArea description;
   @FXML private TextField project;
   @FXML private ChoiceBox<TaskStatus> status;
-  private TaskFlowController parentController;
+  @FXML private Label errorMessage;
+  @FXML private Button submit;
 
   public void initialize() {
     status.getItems().setAll(TaskStatus.values());
   }
 
-  public void submit() {
-    parentController.generateTaskFromTaskForm();
-    parentController.closeTaskFormStage();
-  }
-
   public void clear() {
+    author.clear();
+    assigned.clear();
     title.clear();
     description.clear();
+    project.clear();
     status.setValue(TaskStatus.TODO);
+    errorMessage.setText("");
   }
 
   public VBox getContainer() {
     return container;
   }
 
-  public String getAuthor() {
+  public String getAuthorText() {
     return author.getText();
   }
 
-  public String getAssigned() {
+  public String getAssignedText() {
     return assigned.getText();
   }
 
-  public String getTitle() {
+  public String getTitleText() {
     return title.getText();
   }
 
@@ -63,7 +65,11 @@ public class TaskFormController {
     this.status.setValue(status);
   }
 
-  public void setParentController(TaskFlowController parentController) {
-    this.parentController = parentController;
+  public void setErrorMessage(String message) {
+    errorMessage.setText(message);
+  }
+
+  public Button getSubmit() {
+    return submit;
   }
 }
