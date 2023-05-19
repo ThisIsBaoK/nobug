@@ -11,25 +11,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-	prefWidth="800.0" xmlns="http://javafx.com/javafx/19"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="application.NavigationController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NavigationController">
 	<children>
 		<MenuBar stylesheets="@style.css">
 			<menus>
 				<Menu mnemonicParsing="false" text="Window">
 					<items>
-						<MenuItem mnemonicParsing="false"
-							onAction="#resetWindowSize" text="Reset Window Size" />
+						<MenuItem mnemonicParsing="false" onAction="#resetWindowSize" text="Reset Window Size" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Help">
 					<items>
 						<MenuItem mnemonicParsing="false" text="Exit" />
-						<MenuItem mnemonicParsing="false"
-							onAction="#openAboutWindow" text="About" />
+						<MenuItem mnemonicParsing="false" onAction="#openAboutWindow" text="About" />
 					</items>
 				</Menu>
 			</menus>
@@ -46,27 +40,20 @@
 								<Font name="System Bold" size="18.0" />
 							</font>
 						</Label>
-						<Button mnemonicParsing="false" prefWidth="1000.0"
-							styleClass="flat-button" stylesheets="@style.css"
-							text="Issue Tracker" VBox.vgrow="ALWAYS">
+						<Button mnemonicParsing="false" prefWidth="1000.0" styleClass="flat-button" stylesheets="@style.css" text="Issue Tracker" VBox.vgrow="ALWAYS">
 							<tooltip>
 								<Tooltip text="Overview of progress." />
 							</tooltip>
 						</Button>
-						<Button mnemonicParsing="false" prefWidth="1000.0"
-							styleClass="flat-button" stylesheets="@style.css" text="Packages" />
-						<Button mnemonicParsing="false" prefWidth="1000.0"
-							styleClass="flat-button" stylesheets="@style.css" text="People"
-							VBox.vgrow="ALWAYS" />
-						<Button mnemonicParsing="false" prefWidth="1000.0"
-							styleClass="flat-button" stylesheets="@style.css" text="Summary" />
+						<Button mnemonicParsing="false" prefWidth="1000.0" styleClass="flat-button" stylesheets="@style.css" text="Projects" />
+						<Button mnemonicParsing="false" prefWidth="1000.0" styleClass="flat-button" stylesheets="@style.css" text="People" VBox.vgrow="ALWAYS" />
+						<Button mnemonicParsing="false" prefWidth="1000.0" styleClass="flat-button" stylesheets="@style.css" text="Summary" />
 					</children>
 					<HBox.margin>
 						<Insets />
 					</HBox.margin>
 				</VBox>
-				<VBox fx:id="tabContainer" alignment="TOP_CENTER"
-					prefHeight="574.0" prefWidth="668.0" HBox.hgrow="ALWAYS" />
+				<VBox fx:id="tabContainer" alignment="TOP_CENTER" prefHeight="574.0" prefWidth="668.0" HBox.hgrow="ALWAYS" />
 			</children>
 		</HBox>
 	</children>

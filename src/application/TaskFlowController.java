@@ -60,16 +60,13 @@ public class TaskFlowController {
   }
 
   public void generateTaskFromTaskForm() {
-    User user = new User("first", "last", "email@mail.com", "123");
-    Project project =
-        new Project("nobug", "A bug tracking system in Java and JavaFX", ProjectStatus.ACTIVE);
     Task task =
         new Task(
-            user,
-            user,
+            taskFormController.getAuthor(),
+            taskFormController.getAssigned(),
             taskFormController.getTitle(),
-            taskFormController.getDescription(),
-            project,
+            taskFormController.getDescriptionText(),
+            1,
             taskFormController.getTaskStatus());
     new TaskController(todoContainer, inprogressContainer, doneContainer, task);
   }

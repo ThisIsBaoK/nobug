@@ -1,19 +1,19 @@
 package application;
 
 public class Task {
-  private User author;
-  private User assigned;
+  private String author;
+  private String assigned;
   private String title;
   private String description;
-  private Project project;
+  private int project;
   private TaskStatus status;
 
   public Task(
-      User author,
-      User assigned,
+      String author,
+      String assigned,
       String title,
       String description,
-      Project project,
+      int project,
       TaskStatus status) {
     this.author = author;
     this.assigned = assigned;
@@ -31,11 +31,11 @@ public class Task {
     this.description = description;
   }
 
-  public Project getProject() {
+  public int getProject() {
     return project;
   }
 
-  public void setProject(Project project) {
+  public void setProject(int project) {
     this.project = project;
   }
 
@@ -47,19 +47,19 @@ public class Task {
     this.title = title;
   }
 
-  public User getAuthor() {
+  public String getAuthor() {
     return author;
   }
 
-  public void setAuthor(User author) {
+  public void setAuthor(String author) {
     this.author = author;
   }
 
-  public User getAssigned() {
+  public String getAssigned() {
     return assigned;
   }
 
-  public void setAssigned(User assigned) {
+  public void setAssigned(String assigned) {
     this.assigned = assigned;
   }
 

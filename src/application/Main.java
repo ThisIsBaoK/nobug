@@ -12,18 +12,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+  private Stage primaryStage;
   private FXMLLoader navigationLoader;
   private FXMLLoader taskFlowLoader;
   private FXMLLoader taskFormLoader;
   private FXMLLoader loginLoader;
+  private FXMLLoader signUpLoader;
   private Scene loginScene;
+  private Scene signUpScene;
   private Scene navigationScene;
-  private Stage primaryStage;
   private Backend backend;
-  NavigationController navigationController;
-  TaskFormController taskFormController;
-  TaskFlowController taskFlowController;
-  LoginController loginController;
+  private NavigationController navigationController;
+  private TaskFormController taskFormController;
+  private TaskFlowController taskFlowController;
+  private LoginController loginController;
+  private SignUpController signUpController;
 
   @Override
   public void start(Stage primaryStage) {
@@ -32,23 +35,28 @@ public class Main extends Application {
     try {
       // Connect to database.
       backend = new Backend();
+
       // Load all FXMLs.
       navigationLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.NAVIGATION_FXML));
       taskFlowLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FLOW_FXML));
       taskFormLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FORM_FXML));
       loginLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.LOGIN_FXML));
+      signUpLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.SIGN_UP_FXML));
 
       // Controllers.
       Parent loginLoaded = loginLoader.load();
+      Parent signUpLoaded = signUpLoader.load();
       Parent nagivationLoaded = navigationLoader.load();
       taskFlowLoader.load();
       taskFormLoader.load();
       loginScene = new Scene(loginLoaded);
+      signUpScene = new Scene(signUpLoaded);
       navigationScene = new Scene(nagivationLoaded);
       navigationController = navigationLoader.getController();
       taskFormController = taskFormLoader.getController();
       taskFlowController = taskFlowLoader.getController();
       loginController = loginLoader.getController();
+      signUpController = signUpLoader.getController();
 
       // Create pages.
       VBox tabContainer = navigationController.getTabContainer();
@@ -57,7 +65,6 @@ public class Main extends Application {
       tabContainer.getChildren().add(taskFlowController.getContainer());
       VBox.setVgrow(taskFlowController.getContainer(), Priority.ALWAYS);
       HBox.setHgrow(taskFlowController.getContainer(), Priority.ALWAYS);
-      System.out.print(taskFormController.getContainer());
       taskFlowController.setTaskFormController(taskFormController);
       taskFormController.setParentController(taskFlowController);
 
@@ -75,11 +82,28 @@ public class Main extends Application {
                   login();
                 }
               });
+      
+      loginController.getSignUp().setOnAction(
+          new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+              signUp();
+            }
+          });
+      
+      
+      signUpController.getSubmit().setOnAction(
+          new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+              submitSignUpForm();
+            }
+          });
 
       // Show primary stage.
       primaryStage.show();
     } catch (Exception e) {
-      System.out.println(e);
+      System.out.println("system error: " + e);
     }
   }
 
@@ -92,17 +116,30 @@ public class Main extends Application {
     if (loginController.getEmailText().equals("admin")
         && loginController.getPasswordText().equals("admin")) {
       ok = true;
+      loginController.setLoginStatusText("");
+
     } else {
       try {
         if (backend.userExists(loginController.getEmailText(), loginController.getPasswordText())) {
           ok = true;
+        } else {
+          loginController.setLoginStatusText("Wrong email or password");
         }
       } catch (MyException e) {
         System.out.println(e);
+        loginController.setLoginStatusText("Failed to read database");
       }
     }
     if (ok) {
       primaryStage.setScene(navigationScene);
     }
+  }
+  
+  public void signUp() {
+    primaryStage.setScene(signUpScene);
+  }
+  
+  public void submitSignUpForm() {
+    primaryStage.setScene(loginScene);
   }
 }
