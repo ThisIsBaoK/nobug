@@ -73,6 +73,15 @@ public class Main extends Application {
       primaryStage.setTitle(SoftwareInfo.SOFTWARE_NAME);
       primaryStage.setScene(loginScene);
 
+      navigationController
+          .getHelpLogout()
+          .setOnAction(
+              new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                  helpLogout();
+                }
+              });
       loginController
           .getLogin()
           .setOnAction(
@@ -127,7 +136,6 @@ public class Main extends Application {
         && loginController.getPasswordText().equals("admin")) {
       ok = true;
       loginController.setLoginStatusText("");
-
     } else {
       try {
         if (backend.emailAndPasswordExists(
@@ -213,6 +221,11 @@ public class Main extends Application {
       System.out.println(e);
       return;
     }
+    primaryStage.setScene(loginScene);
+  }
+
+  public void helpLogout() {
+    loginController.clear();
     primaryStage.setScene(loginScene);
   }
 }

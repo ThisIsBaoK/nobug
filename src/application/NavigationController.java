@@ -5,16 +5,22 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class NavigationController {
   @FXML private VBox tabContainer;
+  @FXML private MenuItem helpLogout;
 
   private Stage stage;
 
   public VBox getTabContainer() {
     return this.tabContainer;
+  }
+
+  public MenuItem getHelpLogout() {
+    return helpLogout;
   }
 
   public void openAboutWindow() {

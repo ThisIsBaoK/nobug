@@ -33,4 +33,10 @@ public class LoginController {
   public Hyperlink getSignUp() {
     return signUp;
   }
+  
+  public void clear() {
+    email.setText("");
+    password.setText("");
+    loginStatus.setText("");
+  }
 }
