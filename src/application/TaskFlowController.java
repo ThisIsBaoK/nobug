@@ -13,10 +13,8 @@ public class TaskFlowController {
   @FXML private VBox todoContainer;
   @FXML private VBox inprogressContainer;
   @FXML private VBox doneContainer;
-  Backend backend;
-
+  private Backend backend;
   private TaskFormController taskFormController;
-
   private Stage taskFormStage;
 
   public HBox getContainer() {
