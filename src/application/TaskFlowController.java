@@ -138,9 +138,17 @@ public class TaskFlowController {
       taskFormController.setErrorMessage("Failed to query database");
       return;
     }
+    TaskStatus status = taskFormController.getTaskStatus();
+    // Update database.
+    try {
+      backend.addTask(author, assigned, title, description, project, status.toString());
+    } catch (MyException e) {
+      System.out.println("update project table: " + e);
+      taskFormController.setErrorMessage("Failed to update database");
+      return;
+    }
     // Append a new task.
-    Task task =
-        new Task(author, assigned, title, description, project, taskFormController.getTaskStatus());
+    Task task = new Task(author, assigned, title, description, project, status);
     new TaskController(todoContainer, inprogressContainer, doneContainer, task);
     // Close the form.
     taskFormStage.close();

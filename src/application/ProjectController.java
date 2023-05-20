@@ -109,6 +109,7 @@ public class ProjectController {
     } catch (MyException e) {
       System.out.println("update project table: " + e);
       projectFormController.setErrorMessage("Failed to update database");
+      return;
     }
     // Update the table.
     updateTableFromDatabase();

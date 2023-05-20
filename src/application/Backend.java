@@ -9,6 +9,9 @@ import java.sql.SQLException;
 public class Backend {
   private static final String SQL_INSERT_USER =
       "INSERT INTO Users(email, password, firstName, lastName) VALUES(?, ?, ?, ?)";
+  private static final String SQL_INSERT_TASK =
+      "INSERT INTO Tasks(author, assigned, title, description, project, status) VALUES(?, ?, ?, ?,"
+          + " ?, ?)";
   private static final String SQL_QUERY_USER_EXISTENCE = "SELECT 1 FROM Users WHERE email=?";
   private static final String SQL_QUERY_EMAIL_PASSWORd_EXISTENCE =
       "SELECT 1 FROM Users WHERE email=? AND password=?";
@@ -17,6 +20,7 @@ public class Backend {
   private static final String SQL_READ_ALL_USERS = "SELECT * FROM Users";
   private static final String SQL_INSERT_PROJECT =
       "INSERT INTO Projects(title, description, status) VALUES(?, ?, ?)";
+  private static final String SQL_READ_ALL_TASKS = "SELECT * FROM Tasks";
   private Connection connection;
 
   public Backend() throws MyException {
@@ -60,6 +64,24 @@ public class Backend {
       throw new MyException("execute query: " + e);
     }
     return false;
+  }
+
+  public int addTask(
+      String author, String assigned, String title, String description, int project, String status)
+      throws MyException {
+    PreparedStatement preparedStatement;
+    try {
+      preparedStatement = connection.prepareStatement(SQL_INSERT_TASK);
+      preparedStatement.setString(1, author);
+      preparedStatement.setString(2, assigned);
+      preparedStatement.setString(3, title);
+      preparedStatement.setString(4, description);
+      preparedStatement.setInt(5, project);
+      preparedStatement.setString(6, status);
+      return preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+      throw new MyException("execute query: " + e);
+    }
   }
 
   public int addUser(String email, String password, String firstName, String lastName)
@@ -106,6 +128,16 @@ public class Backend {
     PreparedStatement preparedStatement;
     try {
       preparedStatement = connection.prepareStatement(SQL_READ_ALL_USERS);
+      return preparedStatement.executeQuery();
+    } catch (SQLException e) {
+      throw new MyException("execute query: " + e);
+    }
+  }
+
+  public ResultSet readAllTasks() throws MyException {
+    PreparedStatement preparedStatement;
+    try {
+      preparedStatement = connection.prepareStatement(SQL_READ_ALL_TASKS);
       return preparedStatement.executeQuery();
     } catch (SQLException e) {
       throw new MyException("execute query: " + e);
