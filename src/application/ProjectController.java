@@ -22,7 +22,7 @@ public class ProjectController {
   @FXML private TableColumn<ProjectsModel, String> description;
   @FXML private TableColumn<ProjectsModel, String> status;
   @FXML private Label errorMessage;
-  Backend backend;
+  private Backend backend;
   private ProjectFormController projectFormController;
   private Stage projectFormStage;
   private ObservableList<ProjectsModel> projectsModels = FXCollections.observableArrayList();
@@ -51,7 +51,6 @@ public class ProjectController {
       while (rs.next()) {
         ProjectsModel projectsModel =
             new ProjectsModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
-        System.out.println(rs.getInt(1) + rs.getString(2) + rs.getString(3));
         projectsModels.add(projectsModel);
       }
     } catch (Exception e) {

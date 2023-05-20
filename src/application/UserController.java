@@ -17,7 +17,7 @@ public class UserController {
   @FXML private TableColumn<UsersModel, String> firstName;
   @FXML private TableColumn<UsersModel, String> lastName;
   @FXML private Label errorMessage;
-  Backend backend;
+  private Backend backend;
   private ObservableList<UsersModel> usersModels = FXCollections.observableArrayList();
 
   public void initialize() {
