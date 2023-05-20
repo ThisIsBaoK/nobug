@@ -1,0 +1,6 @@
+[x] (A) Update database after issue ticket creation
+[x] (A) Update project table view after project creation
+[x] (A) Add people page
+[x] (A) Load database to people page at startup
+[x] (A) Update people page after user creation
+[x] (A) Read project status from database

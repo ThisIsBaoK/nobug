@@ -1,6 +1,7 @@
 package application;
 
 public class Task {
+  private int id;
   private String author;
   private String assigned;
   private String title;
@@ -21,6 +22,14 @@ public class Task {
     this.description = description;
     this.project = project;
     this.status = status;
+  }
+
+  public int getID() {
+    return id;
+  }
+
+  public void setID(int id) {
+    this.id = id;
   }
 
   public String getDescription() {

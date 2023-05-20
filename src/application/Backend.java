@@ -12,6 +12,7 @@ public class Backend {
   private static final String SQL_INSERT_TASK =
       "INSERT INTO Tasks(author, assigned, title, description, project, status) VALUES(?, ?, ?, ?,"
           + " ?, ?)";
+  private static final String SQL_QUERY_LAST_INSERTED_TASK_INDEX = "";
   private static final String SQL_QUERY_USER_EXISTENCE = "SELECT 1 FROM Users WHERE email=?";
   private static final String SQL_QUERY_EMAIL_PASSWORd_EXISTENCE =
       "SELECT 1 FROM Users WHERE email=? AND password=?";
@@ -73,12 +74,26 @@ public class Backend {
     try {
       preparedStatement = connection.prepareStatement(SQL_INSERT_TASK);
       preparedStatement.setString(1, author);
+      if (assigned.length() == 0) {
+        assigned = null;
+      }
       preparedStatement.setString(2, assigned);
       preparedStatement.setString(3, title);
       preparedStatement.setString(4, description);
       preparedStatement.setInt(5, project);
       preparedStatement.setString(6, status);
-      return preparedStatement.executeUpdate();
+      preparedStatement.executeUpdate();
+
+      // Get task id.
+      preparedStatement = connection.prepareStatement(SQL_QUERY_LAST_INSERTED_TASK_INDEX);
+      ResultSet rs = preparedStatement.executeQuery();
+      rs.next();
+      String lastID = rs.getString("lastID");
+      try {
+        return Integer.parseInt(lastID);
+      } catch (NumberFormatException e) {
+        throw new MyException("cannot read query result");
+      }
     } catch (SQLException e) {
       throw new MyException("execute query: " + e);
     }

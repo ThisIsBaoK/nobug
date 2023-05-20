@@ -139,17 +139,15 @@ public class TaskFlowController {
       return;
     }
     TaskStatus status = taskFormController.getTaskStatus();
-    // Update database.
+    // Append a new task.
+    Task task = new Task(author, assigned, title, description, project, status);
     try {
-      backend.addTask(author, assigned, title, description, project, status.toString());
+      new TaskController(todoContainer, inprogressContainer, doneContainer, backend, task);
     } catch (MyException e) {
-      System.out.println("update project table: " + e);
+      System.out.println("update issue tables: " + e);
       taskFormController.setErrorMessage("Failed to update database");
       return;
     }
-    // Append a new task.
-    Task task = new Task(author, assigned, title, description, project, status);
-    new TaskController(todoContainer, inprogressContainer, doneContainer, task);
     // Close the form.
     taskFormStage.close();
   }

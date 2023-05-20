@@ -13,15 +13,32 @@ public class TaskController {
   private VBox inprogressParentContainer;
   private VBox doneParentContainer;
   private VBox parentContainer;
+  private Backend backend;
+  private Task task;
+  private Label heading;
 
   public TaskController(
       VBox todoParentContainer,
       VBox inprogressParentContainer,
       VBox doneParentContainer,
-      Task task) {
+      Backend backend,
+      Task task)
+      throws MyException {
+    int taskID =
+        backend.addTask(
+            task.getAuthor(),
+            task.getAssigned(),
+            task.getTitle(),
+            task.getDescription(),
+            task.getProject(),
+            task.getStatus().toString());
+    System.out.println("Task ID: " + taskID);
+    task.setID(taskID);
     this.todoParentContainer = todoParentContainer;
     this.inprogressParentContainer = inprogressParentContainer;
     this.doneParentContainer = doneParentContainer;
+    this.backend = backend;
+    this.task = task;
     switch (task.getStatus()) {
       case TODO:
         parentContainer = todoParentContainer;
@@ -33,8 +50,8 @@ public class TaskController {
         parentContainer = doneParentContainer;
         break;
     }
-    Label label = new Label(task.getTitle());
-    label.setWrapText(true);
+    heading = new Label("#" + task.getID() + " " + task.getTitle());
+    heading.setWrapText(true);
     Button button = new Button(">");
     button.setStyle("-fx-font-size: 8;");
     button.setOnAction(
@@ -44,7 +61,7 @@ public class TaskController {
             switchPane();
           }
         });
-    container = new VBox(label, button);
+    container = new VBox(heading, button);
     container.setSpacing(5);
     container.setPadding(new Insets(5));
     container.setStyle("-fx-background-color: #FFFFFF;");

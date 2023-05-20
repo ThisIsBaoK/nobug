@@ -1,17 +1,11 @@
-[ ] (B) Add summary page
-[ ] (A) Update database after issue ticket creation
 [ ] (A) Load database to issue tracker page at startup
 [ ] (A) Allow user to delete issue ticket
 [ ] (A) Write report for the project
 [ ] (A) Make presentation
-[ ] (A) Update project table view after project creation
-[ ] (A) Add people page
-[ ] (A) Load database to people page at startup
-[ ] (A) Update people page after user creation
-[ ] (A) Read project status from database
 [ ] (A) Refactor the project into packages
 [ ] (A) Refactor the project into MVC architecture
 [ ] (C) Add logo to stages
 [ ] (C) Add comments
 [ ] (C) Add user guide in README
 [ ] (C) Change project visibility to public
+[ ] (C) Add summary page
