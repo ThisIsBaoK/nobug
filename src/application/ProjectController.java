@@ -42,11 +42,13 @@ public class ProjectController {
   }
 
   public void updateTableFromDatabase() {
+    projectsModels.clear();
     ResultSet rs;
     try {
       rs = backend.readAllProjects();
       while (rs.next()) {
-        ProjectsModel projectsModel = new ProjectsModel(1, rs.getString(2), rs.getString(3));
+        ProjectsModel projectsModel =
+            new ProjectsModel(rs.getInt(1), rs.getString(2), rs.getString(3));
         System.out.println(rs.getInt(1) + rs.getString(2) + rs.getString(3));
         projectsModels.add(projectsModel);
       }
@@ -106,6 +108,8 @@ public class ProjectController {
       System.out.println("update project table: " + e);
       projectFormController.setErrorMessage("Failed to update database");
     }
+    // Update the table.
+    updateTableFromDatabase();
     // Close the form.
     projectFormStage.close();
   }

@@ -1,6 +1,6 @@
 module nobug {
-  requires javafx.controls;
-  requires java.sql;
+  requires transitive javafx.controls;
+  requires transitive java.sql;
   requires javafx.fxml;
   requires javafx.graphics;
   requires javafx.base;

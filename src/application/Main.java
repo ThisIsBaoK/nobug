@@ -14,13 +14,6 @@ import javafx.stage.Stage;
 public class Main extends Application {
   private Backend backend;
   private Stage primaryStage;
-  private FXMLLoader navigationLoader;
-  private FXMLLoader taskFlowLoader;
-  private FXMLLoader taskFormLoader;
-  private FXMLLoader loginLoader;
-  private FXMLLoader signUpLoader;
-  private FXMLLoader projectLoader;
-  private FXMLLoader projectFormLoader;
   private Scene loginScene;
   private Scene signUpScene;
   private Scene navigationScene;
@@ -31,6 +24,7 @@ public class Main extends Application {
   private SignUpController signUpController;
   private ProjectController projectController;
   private ProjectFormController projectFormController;
+  private UserController userController;
 
   @Override
   public void start(Stage primaryStage) {
@@ -41,13 +35,18 @@ public class Main extends Application {
       backend = new Backend();
 
       // Load all FXMLs.
-      navigationLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.NAVIGATION_FXML));
-      taskFlowLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FLOW_FXML));
-      taskFormLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FORM_FXML));
-      loginLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.LOGIN_FXML));
-      signUpLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.SIGN_UP_FXML));
-      projectLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.PROJECT_FXML));
-      projectFormLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.PROJECT_FORM_FXML));
+      FXMLLoader navigationLoader =
+          new FXMLLoader(getClass().getResource(SoftwareInfo.NAVIGATION_FXML));
+      FXMLLoader taskFlowLoader =
+          new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FLOW_FXML));
+      FXMLLoader taskFormLoader =
+          new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FORM_FXML));
+      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.LOGIN_FXML));
+      FXMLLoader signUpLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.SIGN_UP_FXML));
+      FXMLLoader projectLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.PROJECT_FXML));
+      FXMLLoader projectFormLoader =
+          new FXMLLoader(getClass().getResource(SoftwareInfo.PROJECT_FORM_FXML));
+      FXMLLoader userLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.USER_FXML));
 
       // Controllers.
       Parent loginLoaded = loginLoader.load();
@@ -57,6 +56,7 @@ public class Main extends Application {
       taskFormLoader.load();
       projectLoader.load();
       projectFormLoader.load();
+      userLoader.load();
       loginScene = new Scene(loginLoaded);
       signUpScene = new Scene(signUpLoaded);
       navigationScene = new Scene(nagivationLoaded);
@@ -67,6 +67,7 @@ public class Main extends Application {
       signUpController = signUpLoader.getController();
       projectController = projectLoader.getController();
       projectFormController = projectFormLoader.getController();
+      userController = userLoader.getController();
 
       // Create pages.
       VBox tabContainer = navigationController.getTabContainer();
@@ -74,6 +75,7 @@ public class Main extends Application {
       // Navigation.
       navigationController.setTaskFlow(taskFlowController.getContainer());
       navigationController.setProject(projectController.getContainer());
+      navigationController.setPeople(userController.getContainer());
 
       // Task Flow page.
       tabContainer.getChildren().add(taskFlowController.getContainer());
@@ -86,6 +88,10 @@ public class Main extends Application {
       projectController.setBackend(backend);
       projectController.updateTableFromDatabase();
       projectController.setProjectFormController(projectFormController);
+
+      // People page.
+      userController.setBackend(backend);
+      userController.updateTableFromDatabase();
 
       // Configure primary stage.
       navigationController.setStage(primaryStage);

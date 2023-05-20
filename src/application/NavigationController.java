@@ -23,6 +23,7 @@ public class NavigationController {
   private Parent taskFlowPage;
   private Parent selectedPage;
   private Parent projectPage;
+  private Parent peoplePage;
 
   public void initialize() {
     selected = issueTracker;
@@ -51,6 +52,8 @@ public class NavigationController {
     }
     people.setStyle("-fx-background-color: #000000;");
     selected = people;
+    selectedPage = peoplePage;
+    tabContainer.getChildren().add(selectedPage);
   }
 
   public void switchToProjects() {
@@ -113,5 +116,9 @@ public class NavigationController {
 
   public void setProject(Parent page) {
     this.projectPage = page;
+  }
+
+  public void setPeople(Parent page) {
+    this.peoplePage = page;
   }
 }
