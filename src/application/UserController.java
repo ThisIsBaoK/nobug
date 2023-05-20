@@ -36,6 +36,7 @@ public class UserController {
   }
 
   public void updateTableFromDatabase() {
+    usersModels.clear();
     ResultSet rs;
     try {
       rs = backend.readAllUsers();

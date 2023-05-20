@@ -251,6 +251,7 @@ public class Main extends Application {
     loginController.setEmailText(email);
     loginController.setPasswordText(password);
     primaryStage.setScene(loginScene);
+    userController.updateTableFromDatabase();
   }
 
   public void helpLogout() {
