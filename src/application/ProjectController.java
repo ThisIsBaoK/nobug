@@ -85,6 +85,7 @@ public class ProjectController {
   public void submitTaskForm() {
     String title = projectFormController.getTitleText();
     String description = projectFormController.getDescriptionText();
+    ProjectStatus status = projectFormController.getStatus();
     // Title.
     if (title.length() == 0) {
       projectFormController.setErrorMessage("Title must be at least one character");
@@ -104,7 +105,7 @@ public class ProjectController {
       return;
     }
     try {
-      backend.addProject(title, description);
+      backend.addProject(title, description, status.toString());
     } catch (MyException e) {
       System.out.println("update project table: " + e);
       projectFormController.setErrorMessage("Failed to update database");

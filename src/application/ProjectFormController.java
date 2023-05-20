@@ -2,6 +2,7 @@ package application;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -12,7 +13,13 @@ public class ProjectFormController {
   @FXML private Label errorMessage;
   @FXML private TextField title;
   @FXML private TextArea description;
+  @FXML private ChoiceBox<ProjectStatus> status;
   @FXML private Button submit;
+
+  public void initialize() {
+    status.getItems().setAll(ProjectStatus.values());
+    status.setValue(ProjectStatus.ARCHIVED);
+  }
 
   public VBox getContainer() {
     return container;
@@ -46,5 +53,9 @@ public class ProjectFormController {
 
   public Button getSubmit() {
     return submit;
+  }
+
+  public ProjectStatus getStatus() {
+    return status.getValue();
   }
 }

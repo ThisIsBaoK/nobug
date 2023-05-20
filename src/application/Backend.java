@@ -16,7 +16,7 @@ public class Backend {
   private static final String SQL_READ_ALL_PROJECTS = "SELECT * FROM Projects";
   private static final String SQL_READ_ALL_USERS = "SELECT * FROM Users";
   private static final String SQL_INSERT_PROJECT =
-      "INSERT INTO Projects(title, description) VALUES(?, ?)";
+      "INSERT INTO Projects(title, description, status) VALUES(?, ?, ?)";
   private Connection connection;
 
   public Backend() throws MyException {
@@ -112,12 +112,13 @@ public class Backend {
     }
   }
 
-  public int addProject(String title, String description) throws MyException {
+  public int addProject(String title, String description, String status) throws MyException {
     PreparedStatement preparedStatement;
     try {
       preparedStatement = connection.prepareStatement(SQL_INSERT_PROJECT);
       preparedStatement.setString(1, title);
       preparedStatement.setString(2, description);
+      preparedStatement.setString(3, status);
       return preparedStatement.executeUpdate();
     } catch (SQLException e) {
       throw new MyException("execute query: " + e);
