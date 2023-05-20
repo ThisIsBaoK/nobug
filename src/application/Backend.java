@@ -97,7 +97,7 @@ public class Backend {
         throw new MyException("cannot read query result");
       }
     } catch (SQLException e) {
-      throw new MyException("execute query: " + e);
+      throw new MyException("execute insert: " + e);
     }
   }
 
@@ -109,7 +109,7 @@ public class Backend {
       preparedStatement.setInt(2, id);
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
-      throw new MyException("execute query: " + e);
+      throw new MyException("execute update: " + e);
     }
   }
 
@@ -124,7 +124,7 @@ public class Backend {
       preparedStatement.setString(4, lastName);
       return preparedStatement.executeUpdate();
     } catch (SQLException e) {
-      throw new MyException("execute query: " + e);
+      throw new MyException("execute insert: " + e);
     }
   }
 
@@ -182,7 +182,7 @@ public class Backend {
       preparedStatement.setString(3, status);
       return preparedStatement.executeUpdate();
     } catch (SQLException e) {
-      throw new MyException("execute query: " + e);
+      throw new MyException("execute insert: " + e);
     }
   }
 }

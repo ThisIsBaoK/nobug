@@ -208,7 +208,7 @@ public class Main extends Application {
       return;
     }
     if (password.length() >= 45) {
-      signUpController.setErrorMessage("Passowrd must be less than 45 characters");
+      signUpController.setErrorMessage("Password must be less than 45 characters");
       return;
     }
     // Validate first name.
