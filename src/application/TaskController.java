@@ -13,14 +13,16 @@ public class TaskController {
   private VBox inprogressParentContainer;
   private VBox doneParentContainer;
   private VBox parentContainer;
-  private Backend backend;
-  private Task task;
   private Label heading;
+  private Label errorMessage;
+  private Task task;
+  private Backend backend;
 
   public TaskController(
       VBox todoParentContainer,
       VBox inprogressParentContainer,
       VBox doneParentContainer,
+      Label errorMessage,
       Backend backend,
       Task task)
       throws MyException {
@@ -37,6 +39,7 @@ public class TaskController {
     this.todoParentContainer = todoParentContainer;
     this.inprogressParentContainer = inprogressParentContainer;
     this.doneParentContainer = doneParentContainer;
+    this.errorMessage = errorMessage;
     this.backend = backend;
     this.task = task;
     switch (task.getStatus()) {
@@ -70,6 +73,21 @@ public class TaskController {
 
   public void switchPane() {
     parentContainer.getChildren().remove(container);
+    TaskStatus nextStatus;
+    if (parentContainer == todoParentContainer) {
+      nextStatus = TaskStatus.INPROGRESS;
+    } else if (parentContainer == inprogressParentContainer) {
+      nextStatus = TaskStatus.DONE;
+    } else {
+      nextStatus = TaskStatus.TODO;
+    }
+    try {
+      backend.updateTaskStatus(task.getID(), nextStatus.toString());
+    } catch (MyException e) {
+      System.out.println("update task table: " + e);
+      errorMessage.setText("Failed to update database");
+      return;
+    }
     if (parentContainer == todoParentContainer) {
       parentContainer = inprogressParentContainer;
     } else if (parentContainer == inprogressParentContainer) {
@@ -78,5 +96,7 @@ public class TaskController {
       parentContainer = todoParentContainer;
     }
     parentContainer.getChildren().add(container);
+    task.setStatus(nextStatus);
+    errorMessage.setText("");
   }
 }

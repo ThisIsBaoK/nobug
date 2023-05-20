@@ -12,7 +12,9 @@ public class Backend {
   private static final String SQL_INSERT_TASK =
       "INSERT INTO Tasks(author, assigned, title, description, project, status) VALUES(?, ?, ?, ?,"
           + " ?, ?)";
-  private static final String SQL_QUERY_LAST_INSERTED_TASK_INDEX = "";
+  private static final String SQL_QUERY_LAST_INSERTED_TASK_INDEX =
+      "SELECT LAST_INSERT_ID() AS lastID FROM Tasks";
+  private static final String SQL_UPDATE_TASK_STATUS = "UPDATE Tasks SET status=? WHERE id=?";
   private static final String SQL_QUERY_USER_EXISTENCE = "SELECT 1 FROM Users WHERE email=?";
   private static final String SQL_QUERY_EMAIL_PASSWORd_EXISTENCE =
       "SELECT 1 FROM Users WHERE email=? AND password=?";
@@ -94,6 +96,18 @@ public class Backend {
       } catch (NumberFormatException e) {
         throw new MyException("cannot read query result");
       }
+    } catch (SQLException e) {
+      throw new MyException("execute query: " + e);
+    }
+  }
+
+  public void updateTaskStatus(int id, String status) throws MyException {
+    PreparedStatement preparedStatement;
+    try {
+      preparedStatement = connection.prepareStatement(SQL_UPDATE_TASK_STATUS);
+      preparedStatement.setString(1, status);
+      preparedStatement.setInt(2, id);
+      preparedStatement.executeUpdate();
     } catch (SQLException e) {
       throw new MyException("execute query: " + e);
     }

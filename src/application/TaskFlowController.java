@@ -4,20 +4,21 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class TaskFlowController {
-  @FXML private HBox container;
+  @FXML private VBox container;
   @FXML private VBox todoContainer;
   @FXML private VBox inprogressContainer;
   @FXML private VBox doneContainer;
+  @FXML private Label errorMessage;
   private Backend backend;
   private TaskFormController taskFormController;
   private Stage taskFormStage;
 
-  public HBox getContainer() {
+  public VBox getContainer() {
     return container;
   }
 
@@ -142,7 +143,8 @@ public class TaskFlowController {
     // Append a new task.
     Task task = new Task(author, assigned, title, description, project, status);
     try {
-      new TaskController(todoContainer, inprogressContainer, doneContainer, backend, task);
+      new TaskController(
+          todoContainer, inprogressContainer, doneContainer, errorMessage, backend, task);
     } catch (MyException e) {
       System.out.println("update issue tables: " + e);
       taskFormController.setErrorMessage("Failed to update database");
