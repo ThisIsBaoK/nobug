@@ -16,7 +16,7 @@
           <TableColumn fx:id="projectID" prefWidth="38.4000244140625" text="ID" />
           <TableColumn fx:id="title" minWidth="8.0" prefWidth="125.60003280639648" text="Title" />
             <TableColumn fx:id="description" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="308.79994201660156" text="Description" />
-            <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="107.9998779296875" text="Status" />
+            <TableColumn fx:id="status" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="107.9998779296875" text="Status" />
         </columns>
       </TableView>
       <HBox maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0">

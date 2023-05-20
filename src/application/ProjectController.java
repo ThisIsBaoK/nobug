@@ -20,6 +20,7 @@ public class ProjectController {
   @FXML private TableColumn<ProjectsModel, Integer> projectID;
   @FXML private TableColumn<ProjectsModel, String> title;
   @FXML private TableColumn<ProjectsModel, String> description;
+  @FXML private TableColumn<ProjectsModel, String> status;
   @FXML private Label errorMessage;
   Backend backend;
   private ProjectFormController projectFormController;
@@ -30,6 +31,7 @@ public class ProjectController {
     projectID.setCellValueFactory(new PropertyValueFactory<>("projectID"));
     title.setCellValueFactory(new PropertyValueFactory<>("title"));
     description.setCellValueFactory(new PropertyValueFactory<>("description"));
+    status.setCellValueFactory(new PropertyValueFactory<>("status"));
     tableview.setItems(projectsModels);
   }
 
@@ -48,7 +50,7 @@ public class ProjectController {
       rs = backend.readAllProjects();
       while (rs.next()) {
         ProjectsModel projectsModel =
-            new ProjectsModel(rs.getInt(1), rs.getString(2), rs.getString(3));
+            new ProjectsModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
         System.out.println(rs.getInt(1) + rs.getString(2) + rs.getString(3));
         projectsModels.add(projectsModel);
       }

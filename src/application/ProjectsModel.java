@@ -7,11 +7,13 @@ public class ProjectsModel {
   private SimpleIntegerProperty projectID;
   private SimpleStringProperty title;
   private SimpleStringProperty description;
+  private SimpleStringProperty status;
 
-  public ProjectsModel(int projectID, String title, String description) {
+  public ProjectsModel(int projectID, String title, String description, String status) {
     this.projectID = new SimpleIntegerProperty(projectID);
     this.title = new SimpleStringProperty(title);
     this.description = new SimpleStringProperty(description);
+    this.status = new SimpleStringProperty(status);
   }
 
   public int getProjectID() {
@@ -36,5 +38,13 @@ public class ProjectsModel {
 
   public void setDescription(String description) {
     this.description.set(description);
+  }
+
+  public String getStatus() {
+    return status.get();
+  }
+
+  public void setStatus(String status) {
+    this.status.set(status);
   }
 }
