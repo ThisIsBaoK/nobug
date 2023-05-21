@@ -27,6 +27,7 @@ public class Backend {
   private static final String SQL_UPDATE_TASK =
       "UPDATE Tasks SET author=?, assigned=?, title=?, description=?, project=?, status=? WHERE"
           + " id=?";
+  private static final String SQL_DELETE_TASK = "DELETE FROM Tasks WHERE id=?";
   private Connection connection;
 
   public Backend() throws MyException {
@@ -199,6 +200,17 @@ public class Backend {
     try {
       preparedStatement = connection.prepareStatement(SQL_READ_ALL_TASKS);
       return preparedStatement.executeQuery();
+    } catch (SQLException e) {
+      throw new MyException("execute query: " + e);
+    }
+  }
+
+  public void deleteTask(int id) throws MyException {
+    PreparedStatement preparedStatement;
+    try {
+      preparedStatement = connection.prepareStatement(SQL_DELETE_TASK);
+      preparedStatement.setInt(1, id);
+      preparedStatement.executeUpdate();
     } catch (SQLException e) {
       throw new MyException("execute query: " + e);
     }

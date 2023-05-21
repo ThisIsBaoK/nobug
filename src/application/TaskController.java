@@ -124,4 +124,9 @@ public class TaskController {
   public Task getTask() {
     return task;
   }
+
+  public void deleteTask() throws MyException {
+    backend.deleteTask(task.getID());
+    parentContainer.getChildren().remove(container);
+  }
 }

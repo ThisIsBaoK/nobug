@@ -88,6 +88,15 @@ public class TaskFlowController {
     Scene scene = new Scene(this.taskEditorController.getContainer());
     taskEditorStage.setScene(scene);
     taskEditorController
+        .getDelete()
+        .setOnAction(
+            new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent e) {
+                deleteTask();
+              }
+            });
+    taskEditorController
         .getSubmit()
         .setOnAction(
             new EventHandler<ActionEvent>() {
@@ -96,6 +105,16 @@ public class TaskFlowController {
                 saveTaskChange();
               }
             });
+  }
+
+  public void deleteTask() {
+    try {
+      taskInEdit.deleteTask();
+    } catch (MyException e) {
+      System.out.println("update issue table: " + e);
+      taskEditorController.setErrorMessage("Failed to update database");
+    }
+    taskEditorStage.close();
   }
 
   public void saveTaskChange() {
@@ -285,7 +304,7 @@ public class TaskFlowController {
             new Task(
                 rs.getInt(1),
                 rs.getString(2),
-                rs.getString(3),
+                Utility.toNonNullString(rs.getString(3)),
                 rs.getString(4),
                 rs.getString(5),
                 rs.getInt(6),
