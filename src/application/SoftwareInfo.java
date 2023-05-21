@@ -16,14 +16,14 @@ public class SoftwareInfo {
           + "\n\n"
           + "Release Date: "
           + RELEASE_DATE;
-  public static final String TASK_FLOW_FXML = "/application/TaskFlow.fxml";
-  public static final String NAVIGATION_FXML = "/application/Navigation.fxml";
-  public static final String TASK_FORM_FXML = "/application/TaskForm.fxml";
-  public static final String LOGIN_FXML = "/application/Login.fxml";
-  public static final String SIGN_UP_FXML = "/application/SignUp.fxml";
-  public static final String PROJECT_FXML = "/application/Project.fxml";
-  public static final String PROJECT_FORM_FXML = "/application/ProjectForm.fxml";
-  public static final String USER_FXML = "/application/User.fxml";
+  public static final String TASK_FLOW_FXML = "/view/TaskFlow.fxml";
+  public static final String NAVIGATION_FXML = "/view/Navigation.fxml";
+  public static final String TASK_FORM_FXML = "/view/TaskForm.fxml";
+  public static final String LOGIN_FXML = "/view/Login.fxml";
+  public static final String SIGN_UP_FXML = "/view/SignUp.fxml";
+  public static final String PROJECT_FXML = "/view/Project.fxml";
+  public static final String PROJECT_FORM_FXML = "/view/ProjectForm.fxml";
+  public static final String USER_FXML = "/view/User.fxml";
   public static final String DATABASE_USERNAME = "root";
   public static final String DATABASE_PASSWORD = "cs380";
   public static final String DATABASE_NAME = "nobug";
