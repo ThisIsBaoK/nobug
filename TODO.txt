@@ -1,5 +1,6 @@
-[ ] (A) Load database to issue tracker page at startup
 [ ] (A) Allow user to delete issue ticket
+[ ] (A) Improve the layout for issue ticket
+[ ] (A) Allow user to update issue ticket
 [ ] (A) Write report for the project
 [ ] (A) Make presentation
 [ ] (A) Refactor the project into packages

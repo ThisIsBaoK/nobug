@@ -4,3 +4,4 @@
 [x] (A) Load database to people page at startup
 [x] (A) Update people page after user creation
 [x] (A) Read project status from database
+[x] (A) Load database to issue tracker page at startup
