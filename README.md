@@ -2,11 +2,11 @@
 
 **NoBug** is a cross-platform and customizable bug-tracking system written in Java.
 
-![Login Page Screenshot](https://github.com/ThisIsBaoK/nobug/blob/main/images/login-page.png)
+![Login Page Screenshot](https://github.com/ThisIsBaoK/nobug/blob/master/images/login-page.png)
 
-![Issue Tracker Page Screenshot](https://github.com/ThisIsBaoK/nobug/blob/main/images/issue-tracker-page.png)
+![Issue Tracker Page Screenshot](https://github.com/ThisIsBaoK/nobug/blob/master/images/issue-tracker-page.png)
 
-![Project Page Screenshot](https://github.com/ThisIsBaoK/nobug/blob/main/images/project-page.png)
+![Project Page Screenshot](https://github.com/ThisIsBaoK/nobug/blob/master/images/project-page.png)
 
 # Development
 
