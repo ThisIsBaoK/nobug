@@ -10,12 +10,14 @@ public class Task {
   private TaskStatus status;
 
   public Task(
+      int id,
       String author,
       String assigned,
       String title,
       String description,
       int project,
       TaskStatus status) {
+    this.id = id;
     this.author = author;
     this.assigned = assigned;
     this.title = title;

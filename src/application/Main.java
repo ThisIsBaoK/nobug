@@ -83,6 +83,7 @@ public class Main extends Application {
       HBox.setHgrow(taskFlowController.getContainer(), Priority.ALWAYS);
       taskFlowController.setTaskFormController(taskFormController);
       taskFlowController.setBackend(backend);
+      taskFlowController.loadTasksFromDatabase();
 
       // Project page.
       projectController.setBackend(backend);

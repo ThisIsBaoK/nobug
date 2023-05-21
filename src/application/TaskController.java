@@ -26,16 +26,7 @@ public class TaskController {
       Backend backend,
       Task task)
       throws MyException {
-    int taskID =
-        backend.addTask(
-            task.getAuthor(),
-            task.getAssigned(),
-            task.getTitle(),
-            task.getDescription(),
-            task.getProject(),
-            task.getStatus().toString());
-    System.out.println("Task ID: " + taskID);
-    task.setID(taskID);
+
     this.todoParentContainer = todoParentContainer;
     this.inprogressParentContainer = inprogressParentContainer;
     this.doneParentContainer = doneParentContainer;

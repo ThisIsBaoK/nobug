@@ -1,5 +1,6 @@
 package application;
 
+import java.sql.ResultSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -141,10 +142,11 @@ public class TaskFlowController {
     }
     TaskStatus status = taskFormController.getTaskStatus();
     // Append a new task.
-    Task task = new Task(author, assigned, title, description, project, status);
     try {
-      new TaskController(
-          todoContainer, inprogressContainer, doneContainer, errorMessage, backend, task);
+      int taskID =
+          backend.addTask(author, assigned, title, description, project, status.toString());
+      Task task = new Task(taskID, author, assigned, title, description, project, status);
+      createNewTaskController(task);
     } catch (MyException e) {
       System.out.println("update issue tables: " + e);
       taskFormController.setErrorMessage("Failed to update database");
@@ -152,5 +154,32 @@ public class TaskFlowController {
     }
     // Close the form.
     taskFormStage.close();
+  }
+
+  public TaskController createNewTaskController(Task task) throws MyException {
+    return new TaskController(
+        todoContainer, inprogressContainer, doneContainer, errorMessage, backend, task);
+  }
+
+  public void loadTasksFromDatabase() {
+    try {
+      ResultSet rs = backend.readAllTasks();
+      // Populate tasks.
+      while (rs.next()) {
+        Task task =
+            new Task(
+                rs.getInt(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4),
+                rs.getString(5),
+                rs.getInt(6),
+                TaskStatus.valueOf(rs.getString(7)));
+        createNewTaskController(task);
+      }
+    } catch (Exception e) {
+      System.out.println(e);
+      errorMessage.setText("Failed to query database");
+    }
   }
 }
