@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -13,7 +14,8 @@ public class TaskController {
   private VBox inprogressParentContainer;
   private VBox doneParentContainer;
   private VBox parentContainer;
-  private Label heading;
+  private Hyperlink heading;
+  private Label assignment;
   private Label errorMessage;
   private Task task;
   private Backend backend;
@@ -44,8 +46,12 @@ public class TaskController {
         parentContainer = doneParentContainer;
         break;
     }
-    heading = new Label("#" + task.getID() + " " + task.getTitle());
+    heading = new Hyperlink("#" + task.getID() + " " + task.getTitle());
     heading.setWrapText(true);
+    assignment = new Label("Assigned: ");
+    if (task.getAssigned() != null) {
+      assignment.setText("Assigned: " + task.getAssigned());
+    }
     Button button = new Button(">");
     button.setStyle("-fx-font-size: 8;");
     button.setOnAction(
@@ -55,11 +61,31 @@ public class TaskController {
             switchPane();
           }
         });
-    container = new VBox(heading, button);
-    container.setSpacing(5);
+    container = new VBox(heading, assignment, button);
+    container.setSpacing(2);
     container.setPadding(new Insets(5));
     container.setStyle("-fx-background-color: #FFFFFF;");
     parentContainer.getChildren().add(container);
+  }
+
+  public void updateTask(
+      String author,
+      String assigned,
+      String title,
+      String description,
+      int project,
+      TaskStatus status) {
+    task.setAuthor(author);
+    task.setAssigned(assigned);
+    task.setTitle(title);
+    task.setDescription(description);
+    task.setProject(project);
+    task.setStatus(status);
+    this.heading.setText("#" + task.getID() + " " + task.getTitle());
+    assignment.setText("Assigned: ");
+    if (task.getAssigned() != null) {
+      assignment.setText("Assigned: " + task.getAssigned());
+    }
   }
 
   public void switchPane() {
@@ -89,5 +115,13 @@ public class TaskController {
     parentContainer.getChildren().add(container);
     task.setStatus(nextStatus);
     errorMessage.setText("");
+  }
+
+  public Hyperlink getHeading() {
+    return heading;
+  }
+
+  public Task getTask() {
+    return task;
   }
 }

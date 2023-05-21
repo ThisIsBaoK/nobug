@@ -20,6 +20,7 @@ public class Main extends Application {
   private NavigationController navigationController;
   private TaskFormController taskFormController;
   private TaskFlowController taskFlowController;
+  private TaskEditorController taskEditorController;
   private LoginController loginController;
   private SignUpController signUpController;
   private ProjectController projectController;
@@ -41,6 +42,8 @@ public class Main extends Application {
           new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FLOW_FXML));
       FXMLLoader taskFormLoader =
           new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_FORM_FXML));
+      FXMLLoader taskEditorLoader =
+          new FXMLLoader(getClass().getResource(SoftwareInfo.TASK_EDITOR_FXML));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.LOGIN_FXML));
       FXMLLoader signUpLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.SIGN_UP_FXML));
       FXMLLoader projectLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.PROJECT_FXML));
@@ -54,6 +57,7 @@ public class Main extends Application {
       Parent nagivationLoaded = navigationLoader.load();
       taskFlowLoader.load();
       taskFormLoader.load();
+      taskEditorLoader.load();
       projectLoader.load();
       projectFormLoader.load();
       userLoader.load();
@@ -63,6 +67,7 @@ public class Main extends Application {
       navigationController = navigationLoader.getController();
       taskFormController = taskFormLoader.getController();
       taskFlowController = taskFlowLoader.getController();
+      taskEditorController = taskEditorLoader.getController();
       loginController = loginLoader.getController();
       signUpController = signUpLoader.getController();
       projectController = projectLoader.getController();
@@ -82,6 +87,7 @@ public class Main extends Application {
       VBox.setVgrow(taskFlowController.getContainer(), Priority.ALWAYS);
       HBox.setHgrow(taskFlowController.getContainer(), Priority.ALWAYS);
       taskFlowController.setTaskFormController(taskFormController);
+      taskFlowController.setTaskEditorController(taskEditorController);
       taskFlowController.setBackend(backend);
       taskFlowController.loadTasksFromDatabase();
 

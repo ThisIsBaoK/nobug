@@ -24,6 +24,9 @@ public class Backend {
   private static final String SQL_INSERT_PROJECT =
       "INSERT INTO Projects(title, description, status) VALUES(?, ?, ?)";
   private static final String SQL_READ_ALL_TASKS = "SELECT * FROM Tasks";
+  private static final String SQL_UPDATE_TASK =
+      "UPDATE Tasks SET author=?, assigned=?, title=?, description=?, project=?, status=? WHERE"
+          + " id=?";
   private Connection connection;
 
   public Backend() throws MyException {
@@ -110,6 +113,34 @@ public class Backend {
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
       throw new MyException("execute update: " + e);
+    }
+  }
+
+  public void updateTask(
+      int id,
+      String author,
+      String assigned,
+      String title,
+      String description,
+      int project,
+      String status)
+      throws MyException {
+    PreparedStatement preparedStatement;
+    try {
+      preparedStatement = connection.prepareStatement(SQL_UPDATE_TASK);
+      preparedStatement.setString(1, author);
+      if (assigned.length() == 0) {
+        assigned = null;
+      }
+      preparedStatement.setString(2, assigned);
+      preparedStatement.setString(3, title);
+      preparedStatement.setString(4, description);
+      preparedStatement.setInt(5, project);
+      preparedStatement.setString(6, status);
+      preparedStatement.setInt(7, id);
+      preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+      throw new MyException("execute insert: " + e);
     }
   }
 
