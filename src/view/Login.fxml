@@ -44,11 +44,7 @@
             </StackPane>
             <StackPane>
                <children>
-                  <Label fx:id="loginStatus" textFill="#df0000">
-                     <font>
-                        <Font name="System Italic" size="12.0" />
-                     </font>
-                  </Label>
+                  <Label fx:id="loginStatus" styleClass="error-message-label" stylesheets="@style.css" />
                </children>
             </StackPane>
             <StackPane>

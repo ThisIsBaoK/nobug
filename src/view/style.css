@@ -31,3 +31,9 @@
 	-fx-font-weight: bold;
 	-fx-text-fill: #000000;
 }
+
+.error-message-label {
+	-fx-font-style: italic;
+	-fx-text-fill: #cf0000;
+	-fx-wrap-text: true;
+}
