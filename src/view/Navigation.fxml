@@ -47,7 +47,6 @@
 						</Button>
 						<Button fx:id="projects" mnemonicParsing="false" onAction="#switchToProjects" prefWidth="1000.0" styleClass="flat-button" stylesheets="@style.css" text="Projects" />
 						<Button fx:id="people" mnemonicParsing="false" onAction="#switchToPeople" prefWidth="1000.0" styleClass="flat-button" stylesheets="@style.css" text="People" VBox.vgrow="ALWAYS" />
-						<Button fx:id="summary" mnemonicParsing="false" onAction="#switchToSummary" prefWidth="1000.0" styleClass="flat-button" stylesheets="@style.css" text="Summary" />
 					</children>
 					<HBox.margin>
 						<Insets />

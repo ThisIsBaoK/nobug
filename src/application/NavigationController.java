@@ -17,7 +17,6 @@ public class NavigationController {
   @FXML private Button issueTracker;
   @FXML private Button projects;
   @FXML private Button people;
-  @FXML private Button summary;
   private Button selected;
   private Stage stage;
   private Parent taskFlowPage;
@@ -67,17 +66,6 @@ public class NavigationController {
     selected = projects;
     selectedPage = projectPage;
     tabContainer.getChildren().add(selectedPage);
-  }
-
-  public void switchToSummary() {
-    if (selected != null) {
-      selected.setStyle("-fx-background-color: transparent;");
-    }
-    if (selectedPage != null) {
-      tabContainer.getChildren().remove(selectedPage);
-    }
-    summary.setStyle("-fx-background-color: #000000;");
-    selected = summary;
   }
 
   public VBox getTabContainer() {
