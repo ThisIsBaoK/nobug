@@ -1,6 +1,5 @@
 package controllers;
 
-import application.ProjectStatus;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;

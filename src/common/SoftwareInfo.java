@@ -1,4 +1,4 @@
-package application;
+package common;
 
 public class SoftwareInfo {
   public static final String SOFTWARE_BASE_NAME = "NoBug";

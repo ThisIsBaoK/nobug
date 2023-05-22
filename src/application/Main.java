@@ -1,5 +1,8 @@
 package application;
 
+import common.Backend;
+import common.MyException;
+import common.SoftwareInfo;
 import controllers.LoginController;
 import controllers.NavigationController;
 import controllers.ProjectController;

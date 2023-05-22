@@ -1,4 +1,4 @@
-package application;
+package models;
 
 public enum TaskStatus {
   TODO("TODO"),

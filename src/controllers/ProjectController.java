@@ -1,10 +1,8 @@
 package controllers;
 
 import java.sql.ResultSet;
-import application.Backend;
-import application.MyException;
-import application.ProjectStatus;
-import application.ProjectsModel;
+import common.Backend;
+import common.MyException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.ProjectsModel;
 
 public class ProjectController {
   @FXML private VBox container;

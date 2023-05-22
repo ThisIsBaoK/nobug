@@ -1,6 +1,6 @@
 package controllers;
 
-import application.SoftwareInfo;
+import common.SoftwareInfo;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

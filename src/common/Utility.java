@@ -1,4 +1,4 @@
-package application;
+package common;
 
 public class Utility {
   public static String toNonNullString(String str) {

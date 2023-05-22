@@ -1,4 +1,4 @@
-package application;
+package controllers;
 
 public enum ProjectStatus {
   ARCHIVED("ARCHIVED"),

@@ -10,4 +10,10 @@ module nobug {
 
   opens controllers to javafx.graphics, javafx.fxml;
   exports controllers;
+
+  opens models to javafx.graphics, javafx.fxml;
+  exports models;
+
+  opens common to javafx.graphics, javafx.fxml;
+  exports common;
 }
