@@ -1,3 +1,6 @@
+[x] (A) Allow user to delete issue ticket
+[x] (A) Improve the layout for issue ticket
+[x] (A) Allow user to update issue ticket
 [x] (A) Update database after issue ticket creation
 [x] (A) Update project table view after project creation
 [x] (A) Add people page

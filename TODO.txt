@@ -1,10 +1,6 @@
-[ ] (A) Allow user to delete issue ticket
-[ ] (A) Improve the layout for issue ticket
-[ ] (A) Allow user to update issue ticket
 [ ] (A) Write report for the project
 [ ] (A) Make presentation
-[ ] (A) Refactor the project into packages
-[ ] (A) Refactor the project into MVC architecture
+[ ] (A) Create presentation slides
 [ ] (C) Add logo to stages
 [ ] (C) Add comments
 [ ] (C) Add user guide in README
