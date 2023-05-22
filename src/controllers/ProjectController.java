@@ -1,8 +1,8 @@
 package controllers;
 
-import java.sql.ResultSet;
 import common.Backend;
 import common.MyException;
+import java.sql.ResultSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

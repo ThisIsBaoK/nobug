@@ -42,6 +42,13 @@ public class Backend {
     }
   }
 
+  /**
+   * Checks if user exists.
+   *
+   * @param email The email of the user.
+   * @return true if user exists.
+   * @throws MyException if query fails.
+   */
   public boolean userExists(String email) throws MyException {
     PreparedStatement preparedStatement;
     try {

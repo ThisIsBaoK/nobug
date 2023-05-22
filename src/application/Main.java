@@ -63,7 +63,7 @@ public class Main extends Application {
           new FXMLLoader(getClass().getResource(SoftwareInfo.PROJECT_FORM_FXML));
       FXMLLoader userLoader = new FXMLLoader(getClass().getResource(SoftwareInfo.USER_FXML));
 
-      // Controllers.
+      // Loads all FXMLs.
       Parent loginLoaded = loginLoader.load();
       Parent signUpLoaded = signUpLoader.load();
       Parent nagivationLoaded = navigationLoader.load();
@@ -73,9 +73,13 @@ public class Main extends Application {
       projectLoader.load();
       projectFormLoader.load();
       userLoader.load();
+
+      // Create scenes.
       loginScene = new Scene(loginLoaded);
       signUpScene = new Scene(signUpLoaded);
       navigationScene = new Scene(nagivationLoaded);
+
+      // Get controllers.
       navigationController = navigationLoader.getController();
       taskFormController = taskFormLoader.getController();
       taskFlowController = taskFlowLoader.getController();
@@ -117,6 +121,7 @@ public class Main extends Application {
       primaryStage.setTitle(SoftwareInfo.SOFTWARE_NAME);
       primaryStage.setScene(loginScene);
 
+      // Binds widgets to callback methods.
       navigationController
           .getHelpLogout()
           .setOnAction(
@@ -266,10 +271,13 @@ public class Main extends Application {
       System.out.println(e);
       return;
     }
+    // Clear the sign up for recurring sign ups.
     signUpController.clear();
+    // Automatically fill out the login credentials for users.
     loginController.setEmailText(email);
     loginController.setPasswordText(password);
     primaryStage.setScene(loginScene);
+    // Update the people table.
     userController.updateTableFromDatabase();
   }
 
