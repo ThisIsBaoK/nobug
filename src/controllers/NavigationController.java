@@ -1,5 +1,6 @@
-package application;
+package controllers;
 
+import application.SoftwareInfo;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

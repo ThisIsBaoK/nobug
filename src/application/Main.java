@@ -1,5 +1,14 @@
 package application;
 
+import controllers.LoginController;
+import controllers.NavigationController;
+import controllers.ProjectController;
+import controllers.ProjectFormController;
+import controllers.SignUpController;
+import controllers.TaskEditorController;
+import controllers.TaskFlowController;
+import controllers.TaskFormController;
+import controllers.UserController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

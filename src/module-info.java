@@ -7,4 +7,7 @@ module nobug {
 
   opens application to javafx.graphics, javafx.fxml;
   exports application;
+
+  opens controllers to javafx.graphics, javafx.fxml;
+  exports controllers;
 }

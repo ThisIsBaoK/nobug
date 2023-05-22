@@ -1,6 +1,10 @@
-package application;
+package controllers;
 
 import java.sql.ResultSet;
+import application.Backend;
+import application.MyException;
+import application.ProjectStatus;
+import application.ProjectsModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

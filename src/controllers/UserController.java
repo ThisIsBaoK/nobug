@@ -1,6 +1,8 @@
-package application;
+package controllers;
 
 import java.sql.ResultSet;
+import application.Backend;
+import application.UsersModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
