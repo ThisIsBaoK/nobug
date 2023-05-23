@@ -8,3 +8,8 @@
 [x] (A) Update people page after user creation
 [x] (A) Read project status from database
 [x] (A) Load database to issue tracker page at startup
+[x] (A) Write report for the project
+[x] (A) Make presentation
+[x] (A) Create presentation slides
+[x] (C) Add comments
+[x] (C) Change project visibility to public
