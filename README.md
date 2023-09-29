@@ -19,7 +19,7 @@ The project uses the Eclipse project template, so you can run the project in Ecl
 
 Install google-java-format, java, and make.
 
-Install JavaFX SDK.
+Install the JavaFX SDK.
 
 Set environment variable `JAVAFX_LIB_PATH` to the JavaFX bin folder (containing JavaFX .jar files) path.
 Make sure to use forward slashes for path separators.
